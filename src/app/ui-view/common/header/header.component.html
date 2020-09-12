@@ -1,0 +1,31 @@
+<div class="common-header secondary-bg-color">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="brand-logo">
+        <img src="../../../../assets/img/Family-tree-3.png" height="50px" />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="logout-section">
+        <button mat-button [matMenuTriggerFor]="beforeMenu" class="userName">
+          <span>{{ userName | shorten: 20 }}</span>
+          <i class="fal fa-user-circle"></i>
+        </button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item class="userOption" routerLink="./themes">
+            <span>Settings</span>
+            <i class="fal fa-cogs"></i>
+          </button>
+          <button mat-menu-item class="userOption">
+            <span>Profile</span>
+            <i class="fal fa-user-alt"></i>
+          </button>
+          <button mat-menu-item class="userOption" (click)="logOut()">
+            <span>Logout</span>
+            <i class="fal fa-sign-out-alt"></i>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</div>

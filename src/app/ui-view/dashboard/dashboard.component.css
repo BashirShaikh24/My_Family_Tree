@@ -1,0 +1,16 @@
+.dashboard-section {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.dashboard-inner-section {
+  left: 110px;
+  right: 10px;
+  top: 70px;
+  bottom: 10px;
+  box-shadow: 0px 0px 2px 1px #d6d6d6;
+  position: absolute;
+  border-radius: 3px;
+}
+

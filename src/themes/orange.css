@@ -1,0 +1,149 @@
+.primary-border-color {
+  border-color: #25292e;
+}
+
+.secondary-border-color {
+  border-color: #ff810033;
+}
+
+.sideNav-icon-color {
+  color: #ff8100;
+}
+
+.common-sidenav-icon-color:hover,
+.common-sidenav-icon-color.active,
+.the-family-logo {
+  background-color: #282e32;
+  box-shadow: inset 0px 0px 4px 3px #1f1f1f;
+}
+
+.common-sidenav-icon-color:hover .sideNav-icon-color,
+.common-sidenav-icon-color.active .sideNav-icon-color {
+  color: #000;
+}
+
+.icon-section i {
+  color: #ff810059;
+}
+
+.primary-bg-color {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.secondary-bg-color {
+  background-color: #ffffff;
+}
+
+.third-bg-color {
+  background-color: #f1f1f1;
+}
+
+.primary-font-color {
+  color: #343a40;
+}
+
+.secondary-font-color {
+}
+
+.primary-btn-color {
+  background-color: #343a40;
+  border-color: #343a40;
+  color: #fff;
+  box-shadow: 0 3px 0 0 #000000 !important;
+  transition: 0.1s all linear;
+}
+
+.primary-btn-color:hover,
+.primary-btn-color:active,
+.primary-btn-color:focus,
+.primary-btn-color:active:focus {
+  background-color: #262b30 !important;
+  border-color: #1b1b1b !important ;
+  box-shadow: 0 1px 0 0 #000000 !important;
+  transform: translateY(2px);
+}
+
+.secondary-btn-color {
+  background-color: #ffffff;
+  border-color: #e3e3e3;
+  color: #7b7b7b;
+  box-shadow: 0 3px 0 0 #e1e1e1;
+  transition: 0.1s all linear;
+}
+
+.secondary-btn-color:hover,
+.secondary-btn-color:active,
+.secondary-btn-color:focus,
+.secondary-btn-color:active:focus {
+  background-color: #f7f7f7;
+  border-color: #e3e3e3;
+  box-shadow: 0 1px 0 0 #e1e1e1;
+  transform: translateY(2px);
+}
+
+.hobbies-color {
+  background-color: #ff810082;
+  color: #fff;
+}
+
+.mat-step-header .mat-step-label.mat-step-label-active,
+.stepper-family-detail-view .mat-step-label {
+  background-color: #ff8100;
+  color: #fff !important;
+}
+
+.form-control:focus {
+  border-color: #ffe6cd;
+  box-shadow: inset 0 1px 1px #fff7ee, 0 0 8px #ffe4c8;
+  background-color: #fff;
+}
+
+.mat-calendar-body-selected {
+  background-color: #343a40;
+}
+
+.mat-datepicker-toggle-active {
+  color: #343a40;
+}
+
+.login-reg-btn {
+  box-shadow: 0 4px 0 0 #343a40;
+}
+
+/* Action Button Section */
+.ms-nav .ms-menu-toggle:checked ~ .ms-li a,
+.ms-nav > .ms-main > a {
+  box-shadow: 0px 5px 10px #333333;
+}
+
+.ms-nav .ms-menu-toggle ~ .ms-li:before {
+  border-top: 0px solid #343a40;
+}
+
+.ms-nav .ms-menu-toggle:checked ~ .ms-li:before {
+  border-top: 25px solid #343a40;
+}
+
+.ms-nav .ms-menu-toggle:checked ~ .ms-li:after {
+  border-bottom: 25px solid #343a40;
+}
+
+.ms-nav .ms-menu-toggle:checked ~ .ms-main:after {
+  border-bottom: 45px solid #343a40;
+}
+
+.ms-nav .ms-menu-toggle:checked ~ .ms-li-last:after {
+  border-bottom: 0px solid #343a40;
+}
+
+.ms-nav > li a,
+.ms-nav > .ms-main a,
+.ms-nav > .ms-main > a > label {
+  color: #ffffff;
+  background: #343a40;
+}
+
+.family-member-hobbies li i {
+  color: #9d4f00;
+}

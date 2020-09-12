@@ -1,0 +1,1177 @@
+<div class="common-parent-container">
+  <div class="common-wrapper-container">
+    <div class="common-page-tittle primary-bg-color">Add New Family</div>
+    <mat-horizontal-stepper linear #stepper>
+      <mat-step [stepControl]="familyDetail" [optional]="isOptional">
+        <form [formGroup]="familyDetail">
+          <ng-template matStepLabel>Add New Family</ng-template>
+          <div class="common-inner-container">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Family Name <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="familyName"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Family Nick Name </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="familyNickName"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Family Owner Name <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="familyOwnerName"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Family Owner Mobile No. <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="familyOwnerMobileNo"
+                        numbersOnly
+                        maxlength="10"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Family Owner Gender</label>
+                      <div class="checkbox-parent-container">
+                        <div
+                          class="checkbox-inner-container"
+                          [ngClass]="{
+                            selectedColorFrame:
+                              familyDetail.get('familyOwnerGender').value ==
+                              'Male'
+                          }"
+                        >
+                          <p class="gender-color-section male">
+                            <b class="selected-tick gender-selected-tick">
+                              <i class="fas fa-check"></i
+                            ></b>
+                            <i class="fal fa-male gender-icon"></i>
+                            <input
+                              type="radio"
+                              id="familyOwnerGender"
+                              name="familyOwnerGender"
+                              formControlName="familyOwnerGender"
+                              value="Male"
+                            />
+                          </p>
+                          <span>Male</span>
+                        </div>
+                        <div
+                          class="checkbox-inner-container"
+                          [ngClass]="{
+                            selectedColorFrame:
+                              familyDetail.get('familyOwnerGender').value ==
+                              'Female'
+                          }"
+                        >
+                          <p class="gender-color-section female">
+                            <b class="selected-tick gender-selected-tick">
+                              <i class="fas fa-check"></i
+                            ></b>
+                            <i class="fal fa-female gender-icon"></i>
+                            <input
+                              type="radio"
+                              id="familyOwnerGender"
+                              name="familyOwnerGender"
+                              formControlName="familyOwnerGender"
+                              value="Female"
+                            />
+                          </p>
+                          <span>Female</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Family Owner Date of Birth <sup>*</sup></label>
+                      <div class="common-calender-section">
+                        <input
+                          class="form-control"
+                          [matDatepicker]="familyOwnerDateOfBirth"
+                          [max]="maxDate"
+                          formControlName="familyOwnerDateOfBirth"
+                          readonly
+                          required
+                        />
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="familyOwnerDateOfBirth"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker
+                          #familyOwnerDateOfBirth
+                        ></mat-datepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Family Desciption</label>
+                      <textarea
+                        class="form-control"
+                        rows="4"
+                        formControlName="familyDescription"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="family-upload-img-continer secondary-border-color">
+                  <input
+                    id="file"
+                    type="file"
+                    *ngIf="!familyDetail.get('familyLogo').value"
+                    accept=".png,.jpg"
+                    class="form-control"
+                    (change)="
+                      onFileChange($event, this, 'familyDetail', 'familyLogo')
+                    "
+                  />
+                  <img
+                    [src]="familyDetail.get('familyLogo').value"
+                    *ngIf="familyDetail.get('familyLogo').value"
+                  />
+                  <button
+                    type="button"
+                    *ngIf="familyDetail.get('familyLogo').value"
+                    (click)="clearImg(this, 'familyDetail', 'familyLogo')"
+                    class="close-img-btn primary-font-color"
+                  >
+                    <i class="fas fa-times"></i>
+                  </button>
+                  <div
+                    class="file-upload-icon icon-section"
+                    *ngIf="!familyDetail.get('familyLogo').value"
+                  >
+                    <i class="far fa-cloud-upload"></i>
+                    <p>Upload Image</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="add-family-actiontbtn text-right">
+              <button
+                mat-button
+                type="submit"
+                matStepperNext
+                class="btn btn-primary primary-btn-color"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="fatherDetail" [optional]="isOptional">
+        <form [formGroup]="fatherDetail">
+          <ng-template matStepLabel>Add Father Detail</ng-template>
+          <div class="common-inner-container">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Father Name <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="fatherName"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Mobile No. <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="fatherMobileNo"
+                        numbersOnly
+                        maxlength="10"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Gender</label>
+                      <div class="checkbox-parent-container">
+                        <div
+                          class="checkbox-inner-container"
+                          [ngClass]="{
+                            selectedColorFrame:
+                              fatherDetail.get('fatherGender').value == 'Male'
+                          }"
+                        >
+                          <p class="gender-color-section male">
+                            <b class="selected-tick gender-selected-tick">
+                              <i class="fas fa-check"></i
+                            ></b>
+                            <i class="fal fa-male gender-icon"></i>
+                            <input
+                              type="radio"
+                              id="fatherGender"
+                              name="fatherGender"
+                              formControlName="fatherGender"
+                              value="Male"
+                            />
+                          </p>
+                          <span>Male</span>
+                        </div>
+                        <div
+                          class="checkbox-inner-container"
+                          [ngClass]="{
+                            selectedColorFrame:
+                              fatherDetail.get('fatherGender').value == 'Female'
+                          }"
+                        >
+                          <p class="gender-color-section female">
+                            <b class="selected-tick gender-selected-tick">
+                              <i class="fas fa-check"></i
+                            ></b>
+                            <i class="fal fa-female gender-icon"></i>
+                            <input
+                              type="radio"
+                              id="fatherGender"
+                              name="fatherGender"
+                              formControlName="fatherGender"
+                              value="Female"
+                            />
+                          </p>
+                          <span>Female</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Date of Birth <sup>*</sup></label>
+                      <div class="common-calender-section">
+                        <input
+                          class="form-control"
+                          [matDatepicker]="fatherDateOfBirth"
+                          [max]="maxDate"
+                          formControlName="fatherDateOfBirth"
+                          readonly
+                          required
+                        />
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="fatherDateOfBirth"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #fatherDateOfBirth></mat-datepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group" [formGroup]="hobbiesDetail">
+                      <label>Hobbies</label>
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="hobbies"
+                          aria-describedby="basic-addon2"
+                        />
+                        <span
+                          class="input-group-addon primary-bg-color primary-border-color cursorPointer"
+                        >
+                          <button
+                            [disabled]="!hobbiesDetail.valid"
+                            class="primary-bg-color primary-border-color"
+                            (click)="
+                              addHobbies(
+                                this,
+                                'fatherDetail',
+                                'fatherHobbiesArray'
+                              )
+                            "
+                          >
+                            <i class="fal fa-plus"></i> Add
+                          </button></span
+                        >
+                      </div>
+                    </div>
+                    <ul
+                      class="family-member-hobbies"
+                      formArrayName="fatherHobbiesArray"
+                    >
+                      <li
+                        *ngFor="
+                          let item of fatherDetail.get('fatherHobbiesArray')
+                            .controls;
+                          let i = index
+                        "
+                        class="hobbies-color"
+                      >
+                        {{ item.controls.hobbie.value }}
+                        <i
+                          class="fas fa-times-circle"
+                          (click)="
+                            removeHobbie(
+                              this,
+                              'fatherDetail',
+                              'fatherHobbiesArray',
+                              i
+                            )
+                          "
+                        ></i>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Occupation <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="fatherOccupation"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="family-upload-img-continer secondary-border-color">
+                  <input
+                    id="file"
+                    type="file"
+                    *ngIf="!fatherDetail.get('fatherLogo').value"
+                    accept=".png,.jpg"
+                    class="form-control"
+                    (change)="
+                      onFileChange($event, this, 'fatherDetail', 'fatherLogo')
+                    "
+                  />
+                  <img
+                    [src]="fatherDetail.get('fatherLogo').value"
+                    *ngIf="fatherDetail.get('fatherLogo').value"
+                  />
+                  <button
+                    type="button"
+                    *ngIf="fatherDetail.get('fatherLogo').value"
+                    (click)="clearImg(this, 'fatherDetail', 'fatherLogo')"
+                    class="close-img-btn primary-font-color"
+                  >
+                    <i class="fas fa-times"></i>
+                  </button>
+                  <div
+                    class="file-upload-icon icon-section"
+                    *ngIf="!fatherDetail.get('fatherLogo').value"
+                  >
+                    <i class="far fa-cloud-upload"></i>
+                    <p>Upload Image</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="add-family-actiontbtn text-right">
+              <button
+                type="button"
+                mat-button
+                matStepperPrevious
+                class="btn btn-default secondary-btn-color"
+              >
+                Previous
+              </button>
+              <button
+                type="button"
+                mat-button
+                matStepperNext
+                class="btn btn-primary primary-btn-color margin-left-10"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="motherDetail" [optional]="isOptional">
+        <form [formGroup]="motherDetail">
+          <ng-template matStepLabel>Add Mother Detail</ng-template>
+          <div class="common-inner-container">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Mother Name <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="motherName"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Mobile No. <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="motherMobileNo"
+                        numbersOnly
+                        maxlength="10"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Gender</label>
+                      <div class="checkbox-parent-container">
+                        <div
+                          class="checkbox-inner-container"
+                          [ngClass]="{
+                            selectedColorFrame:
+                              motherDetail.get('motherGender').value == 'Male'
+                          }"
+                        >
+                          <p class="gender-color-section male">
+                            <b class="selected-tick gender-selected-tick">
+                              <i class="fas fa-check"></i
+                            ></b>
+                            <i class="fal fa-male gender-icon"></i>
+                            <input
+                              type="radio"
+                              id="motherGender"
+                              name="motherGender"
+                              formControlName="motherGender"
+                              value="Male"
+                            />
+                          </p>
+                          <span>Male</span>
+                        </div>
+                        <div
+                          class="checkbox-inner-container"
+                          [ngClass]="{
+                            selectedColorFrame:
+                              motherDetail.get('motherGender').value == 'Female'
+                          }"
+                        >
+                          <p class="gender-color-section female">
+                            <b class="selected-tick gender-selected-tick">
+                              <i class="fas fa-check"></i
+                            ></b>
+                            <i class="fal fa-female gender-icon"></i>
+                            <input
+                              type="radio"
+                              id="motherGender"
+                              name="motherGender"
+                              formControlName="motherGender"
+                              value="Female"
+                            />
+                          </p>
+                          <span>Female</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Date of Birth <sup>*</sup></label>
+                      <div class="common-calender-section">
+                        <input
+                          class="form-control"
+                          [matDatepicker]="motherDateOfBirth"
+                          [max]="maxDate"
+                          formControlName="motherDateOfBirth"
+                          readonly
+                          required
+                        />
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="motherDateOfBirth"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #motherDateOfBirth></mat-datepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group" [formGroup]="hobbiesDetail">
+                      <label>Hobbies</label>
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="hobbies"
+                          aria-describedby="basic-addon2"
+                        />
+                        <span
+                          class="input-group-addon primary-bg-color primary-border-color cursorPointer"
+                        >
+                          <button
+                            [disabled]="!hobbiesDetail.valid"
+                            class="primary-bg-color primary-border-color"
+                            (click)="
+                              addHobbies(
+                                this,
+                                'motherDetail',
+                                'motherHobbiesArray'
+                              )
+                            "
+                          >
+                            <i class="fal fa-plus"></i> Add
+                          </button></span
+                        >
+                      </div>
+                    </div>
+                    <ul
+                      class="family-member-hobbies"
+                      formArrayName="motherHobbiesArray"
+                    >
+                      <li
+                        *ngFor="
+                          let item of motherDetail.get('motherHobbiesArray')
+                            .controls;
+                          let i = index
+                        "
+                        class="hobbies-color"
+                      >
+                        {{ item.controls.hobbie.value }}
+                        <i
+                          class="fas fa-times-circle"
+                          (click)="
+                            removeHobbie(
+                              this,
+                              'motherDetail',
+                              'motherHobbiesArray',
+                              i
+                            )
+                          "
+                        ></i>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Occupation <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="motherOccupation"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="family-upload-img-continer secondary-border-color">
+                  <input
+                    id="file"
+                    type="file"
+                    *ngIf="!motherDetail.get('motherLogo').value"
+                    accept=".png,.jpg"
+                    class="form-control"
+                    (change)="
+                      onFileChange($event, this, 'motherDetail', 'motherLogo')
+                    "
+                  />
+                  <img
+                    [src]="motherDetail.get('motherLogo').value"
+                    *ngIf="motherDetail.get('motherLogo').value"
+                  />
+                  <button
+                    type="button"
+                    *ngIf="motherDetail.get('motherLogo').value"
+                    (click)="clearImg(this, 'motherDetail', 'motherLogo')"
+                    class="close-img-btn primary-font-color"
+                  >
+                    <i class="fas fa-times"></i>
+                  </button>
+                  <div
+                    class="file-upload-icon icon-section"
+                    *ngIf="!motherDetail.get('motherLogo').value"
+                  >
+                    <i class="far fa-cloud-upload"></i>
+                    <p>Upload Image</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="add-family-actiontbtn text-right">
+              <button
+                type="button"
+                mat-button
+                matStepperPrevious
+                class="btn btn-default secondary-btn-color"
+              >
+                Previous
+              </button>
+              <button
+                type="button"
+                mat-button
+                matStepperNext
+                class="btn btn-primary primary-btn-color margin-left-10"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="childrenDetail" [optional]="isOptional">
+        <form [formGroup]="childrenDetail" (submit)="getFamilyDetails()">
+          <ng-template matStepLabel>Add Children Detail</ng-template>
+          <div class="common-inner-container">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Children Name <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="childrenName"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Mobile No. <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="childrenMobileNo"
+                        numbersOnly
+                        maxlength="10"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Gender</label>
+                      <div class="checkbox-parent-container">
+                        <div
+                          class="checkbox-inner-container"
+                          [ngClass]="{
+                            selectedColorFrame:
+                              childrenDetail.get('childrenGender').value ==
+                              'Male'
+                          }"
+                        >
+                          <p class="gender-color-section male">
+                            <b class="selected-tick gender-selected-tick">
+                              <i class="fas fa-check"></i
+                            ></b>
+                            <i class="fal fa-male gender-icon"></i>
+                            <input
+                              type="radio"
+                              id="childrenGender"
+                              name="childrenGender"
+                              formControlName="childrenGender"
+                              value="Male"
+                            />
+                          </p>
+                          <span>Male</span>
+                        </div>
+                        <div
+                          class="checkbox-inner-container"
+                          [ngClass]="{
+                            selectedColorFrame:
+                              childrenDetail.get('childrenGender').value ==
+                              'Female'
+                          }"
+                        >
+                          <p class="gender-color-section female">
+                            <b class="selected-tick gender-selected-tick">
+                              <i class="fas fa-check"></i
+                            ></b>
+                            <i class="fal fa-female gender-icon"></i>
+                            <input
+                              type="radio"
+                              id="childrenGender"
+                              name="childrenGender"
+                              formControlName="childrenGender"
+                              value="Female"
+                            />
+                          </p>
+                          <span>Female</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Date of Birth <sup>*</sup></label>
+                      <div class="common-calender-section">
+                        <input
+                          class="form-control"
+                          [matDatepicker]="childrenDateOfBirth"
+                          [max]="maxDate"
+                          formControlName="childrenDateOfBirth"
+                          readonly
+                          required
+                        />
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="childrenDateOfBirth"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #childrenDateOfBirth></mat-datepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group" [formGroup]="hobbiesDetail">
+                      <label>Hobbies</label>
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="hobbies"
+                          required
+                          aria-describedby="basic-addon2"
+                        />
+                        <span
+                          class="input-group-addon primary-bg-color primary-border-color cursorPointer"
+                        >
+                          <button
+                            [disabled]="!hobbiesDetail.valid"
+                            class="primary-bg-color primary-border-color"
+                            (click)="
+                              addHobbies(
+                                this,
+                                'childrenDetail',
+                                'childrenHobbiesArray'
+                              )
+                            "
+                          >
+                            <i class="fal fa-plus"></i> Add
+                          </button></span
+                        >
+                      </div>
+                    </div>
+                    <ul
+                      class="family-member-hobbies"
+                      formArrayName="childrenHobbiesArray"
+                    >
+                      <li
+                        *ngFor="
+                          let item of childrenDetail.get('childrenHobbiesArray')
+                            .controls;
+                          let i = index
+                        "
+                        class="hobbies-color"
+                      >
+                        {{ item.controls.hobbie.value }}
+                        <i
+                          class="fas fa-times-circle"
+                          (click)="
+                            removeHobbie(
+                              this,
+                              'childrenDetail',
+                              'childrenHobbiesArray',
+                              i
+                            )
+                          "
+                        ></i>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Occupation <sup>*</sup></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="childrenOccupation"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="family-upload-img-continer secondary-border-color">
+                  <input
+                    id="file"
+                    type="file"
+                    *ngIf="!childrenDetail.get('childrenLogo').value"
+                    accept=".png,.jpg"
+                    class="form-control"
+                    (change)="
+                      onFileChange(
+                        $event,
+                        this,
+                        'childrenDetail',
+                        'childrenLogo'
+                      )
+                    "
+                  />
+                  <img
+                    [src]="childrenDetail.get('childrenLogo').value"
+                    *ngIf="childrenDetail.get('childrenLogo').value"
+                  />
+                  <button
+                    type="button"
+                    *ngIf="childrenDetail.get('childrenLogo').value"
+                    (click)="clearImg(this, 'childrenDetail', 'childrenLogo')"
+                    class="close-img-btn primary-font-color"
+                  >
+                    <i class="fas fa-times"></i>
+                  </button>
+                  <div
+                    class="file-upload-icon icon-section"
+                    *ngIf="!childrenDetail.get('childrenLogo').value"
+                  >
+                    <i class="far fa-cloud-upload"></i>
+                    <p>Upload Image</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="add-family-actiontbtn text-right">
+                  <button
+                    type="button"
+                    (click)="resetChildren()"
+                    class="btn btn-default secondary-btn-color"
+                  >
+                    Canacel
+                  </button>
+                  <button
+                    type="button"
+                    [disabled]="!childrenDetail.valid"
+                    (click)="addChildren()"
+                    class="btn btn-primary primary-btn-color margin-left-10"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-4"></div>
+            </div>
+
+            <div
+              class="common-table-container"
+              [formGroup]="childrenArrayDetail"
+            >
+              <div class="child-table-header primary-bg-color">
+                <div class="col-md-3">Name / Occupation</div>
+                <div class="col-md-1">Mobile No.</div>
+                <div class="col-md-1">Gender</div>
+                <div class="col-md-2">Date of Birth</div>
+                <div class="col-md-3">Hobbies</div>
+                <div class="col-md-2"></div>
+              </div>
+              <div class="child-table-body table-record-color">
+                <div
+                  class="child-record"
+                  *ngFor="
+                    let item of childrenArrayDetail.get('childrenArray').value;
+                    let i = index
+                  "
+                >
+                  <div class="col-md-3 child-name-section">
+                    <img
+                      *ngIf="!item.childrenLogo"
+                      src="../../../../assets/img/Family-tree-3.png"
+                    />
+                    <img *ngIf="item.childrenLogo" [src]="item.childrenLogo" />
+                    <div class="child-name-inner-section">
+                      <p class="title">
+                        {{ item.childrenName ? item.childrenName : "-" }}
+                      </p>
+                      <p class="occupation">
+                        {{ item.childrenOccupation ? item.childrenName : "-" }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-md-1 child-detais">
+                    <p class="title">
+                      {{ item.childrenMobileNo ? item.childrenMobileNo : "-" }}
+                    </p>
+                  </div>
+                  <div class="col-md-1 child-detais">
+                    <p class="title">
+                      {{ item.childrenGender ? item.childrenGender : "-" }}
+                    </p>
+                  </div>
+                  <div class="col-md-2 child-detais">
+                    <p class="title">
+                      {{
+                        (item.childrenDateOfBirth
+                          ? item.childrenDateOfBirth
+                          : "-"
+                        ) | date: "dd-MMM-yyyy"
+                      }}
+                    </p>
+                  </div>
+                  <div class="col-md-3 child-detais hobbies-section-pad">
+                    <ul class="family-member-hobbies">
+                      <p *ngIf="item.childrenHobbiesArray.length === 0">-</p>
+                      <li
+                        *ngFor="
+                          let hobbies of item.childrenHobbiesArray;
+                          let i = index
+                        "
+                        [hidden]="i > 2"
+                        class="hobbies-color family-view-hobbie"
+                      >
+                        {{ hobbies.hobbie | shorten: 12 }}
+                      </li>
+                      <li
+                        *ngIf="item.childrenHobbiesArray.length > 3"
+                        [matMenuTriggerFor]="menu"
+                        class="hobbies-color family-view-hobbie"
+                      >
+                        <i class="fas fa-ellipsis-h"></i>
+                      </li>
+                      <mat-menu #menu="matMenu">
+                        <ul class="family-member-hobbies hobbies-more">
+                          <li
+                            *ngFor="
+                              let hobbies of item.childrenHobbiesArray;
+                              let i = index
+                            "
+                            [hidden]="i < 3"
+                            class="hobbies-color family-view-hobbie"
+                          >
+                            {{ hobbies.hobbie | shorten: 12 }}
+                          </li>
+                        </ul>
+                      </mat-menu>
+                    </ul>
+                  </div>
+                  <div class="col-md-2 children-btn-action">
+                    <div class="ms-nav-container">
+                      <ul class="ms-nav">
+                        <input
+                          type="checkbox"
+                          id="ms-menu{{ i }}"
+                          class="ms-menu-toggle ms-menu"
+                          name="ms-menu-toggle"
+                        />
+                        <li
+                          class="ms-li ms-li3 ms-li-last"
+                          (click)="editChildren(i, item)"
+                        >
+                          <a>
+                            <span class="fas fa-pencil-alt"></span>
+                          </a>
+                        </li>
+                        <li
+                          class="ms-li ms-li2"
+                          data-toggle="modal"
+                          data-target="#viewChildren"
+                        >
+                          <a>
+                            <span class="far fa-eye"></span>
+                          </a>
+                        </li>
+                        <li
+                          class="ms-li ms-li1 ms-li-first"
+                          data-toggle="modal"
+                          data-target="#deleteChildren"
+                          (click)="setDeleteChildrenId(i, item)"
+                        >
+                          <a>
+                            <span class="far fa-trash-alt"></span>
+                          </a>
+                        </li>
+                        <li class="ms-main">
+                          <a>
+                            <label
+                              class="ms-menu-toggle-lbl"
+                              for="ms-menu{{ i }}"
+                            >
+                              <span class="fas fa-ellipsis-h nonActive"></span>
+                              <span class="fas fa-times active"></span>
+                            </label>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="no-record-found"
+                  *ngIf="childrenArrayDetail.get('childrenArray').length === 0"
+                >
+                  No Record Found
+                </div>
+              </div>
+            </div>
+            <div class="add-family-actiontbtn text-right">
+              <button
+                type="button"
+                mat-button
+                matStepperPrevious
+                class="btn btn-default secondary-btn-color"
+              >
+                Previous
+              </button>
+              <button
+                type="submit"
+                mat-button
+                class="btn btn-primary primary-btn-color margin-left-10"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+  
+  <!-- Delete Children -->
+  <div
+    class="modal fade"
+    id="deleteChildren"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <app-delete
+      [getRecordId]="childrenId"
+      [modelHeader]="'Children'"
+      [recordName]="childrenName"
+    ></app-delete>
+  </div>
+
+  <!-- View Children -->
+  <div
+    class="modal fade"
+    id="viewChildren"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header primary-bg-color">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Delete das</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Family Name</div>
+                  <div class="data-section">dsa</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fad fa-users-crown"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Family Nick Name</div>
+                  <div class="data-section">das</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Family Owner Name</div>
+                  <div class="data-section">ddsa</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Family Owner Mobile No.</div>
+                  <div class="data-section">dsa</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-default secondary-btn-color"
+            data-dismiss="modal"
+          >
+            Cancel, keep this dsa
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary primary-btn-color"
+            (click)="confDeleteFamily()"
+            data-dismiss="modal"
+          >
+            Yes, delete this dsa
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

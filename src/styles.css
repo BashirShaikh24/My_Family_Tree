@@ -1,0 +1,274 @@
+/* You can add global styles to this file, and also import other style files */
+body,
+html {
+  height: 100%;
+  width: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:focus {
+  outline: none;
+}
+
+.common-error {
+  font-size: 12px;
+  margin-top: 1px;
+  color: red;
+}
+
+sup {
+  color: red;
+  font-weight: 600;
+}
+
+.btn {
+  min-width: 90px;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus,
+.btn:active:focus {
+  outline: none;
+}
+
+.common-parent-container {
+  height: 100%;
+  overflow: auto;
+}
+
+.common-inner-container {
+  padding: 30px;
+}
+
+.modal-header button.close {
+  color: #fff;
+  opacity: 0.8;
+}
+
+.modal-title {
+  font-weight: 400;
+}
+
+.common-page-tittle {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  position: relative;
+  padding-right: 50px;
+}
+
+.common-page-tittle:after {
+  width: 0;
+  height: 0;
+  border-top: 21px solid transparent;
+  border-bottom: 21px solid transparent;
+  border-right: 35px solid #fff;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.input-group-addon {
+  padding: 0;
+}
+
+.input-group-addon button {
+  padding: 10px 12px;
+  border: 0;
+}
+
+.common-table-bg {
+  background-color: #f8f9ff;
+}
+
+.common-table-container table tbody tr {
+  border-bottom-color: #f8f9ff;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
+.mat-horizontal-content-container {
+  padding: 0 !important;
+}
+
+.mat-horizontal-stepper-header .mat-step-icon,
+.mat-step-optional {
+  display: none !important;
+}
+
+.mat-step-header {
+  padding: 0;
+}
+
+.mat-step-label {
+  display: flex !important;
+  height: 72px;
+  overflow: hidden !important;
+  align-items: center;
+  padding: 0 24px;
+  background-color: #f4f4f4;
+}
+
+.mat-stepper-horizontal {
+  margin-top: 15px;
+}
+
+.mat-horizontal-stepper-header {
+  padding: 0 !important;
+  border-radius: 4px;
+  margin: 0 10px;
+}
+
+.mat-step-label,
+.mat-horizontal-stepper-header {
+  height: 50px !important;
+}
+
+.mat-step-label {
+  padding: 0 40px;
+  z-index: 1;
+}
+
+.mat-step-header .mat-step-label {
+  color: rgb(93 93 93 / 54%) !important;
+}
+
+.mat-stepper-horizontal-line {
+  border-top-width: 2px !important;
+  border-top-color: rgb(244 244 244) !important;
+}
+
+label {
+  font-size: 12px;
+  font-weight: 400;
+  color: #5d5d5d;
+  margin-bottom: 3px;
+}
+
+.form-control {
+  height: 40px;
+  font-size: 16px;
+  border-radius: 2px;
+  color: #2c2c2c;
+}
+
+.form-control {
+  height: 46px;
+  font-size: 16px;
+  border-radius: 4px;
+  color: #2c2c2c;
+  background-color: #f9f9f9;
+  border-color: #ffffff;
+  box-shadow: inset 0px 0px 3px 1px #dadada;
+}
+
+.form-control[readonly] {
+  background-color: #f9f9f9;
+}
+
+.mat-menu-content {
+  width: 200px !important;
+  padding: 0 !important;
+}
+
+.mat-menu-panel {
+  margin-top: 10px;
+}
+
+button.mat-menu-item {
+  border-bottom: 1px solid #f1f1f1;
+  line-height: 40px;
+  height: 40px;
+}
+
+/* Check Box Component */
+.checkbox-parent-container {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  margin-top: 12px;
+}
+
+.checkbox-inner-container {
+  text-align: center;
+  padding-bottom: 0;
+  box-shadow: 0px 0px 6px 1px #e3e3e3;
+  border-radius: 6px;
+  margin-right: 80px;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox-inner-container p {
+  margin: 0;
+  border-radius: 6px;
+  transition: 0.2s all linear;
+}
+
+.checkbox-inner-container span {
+  font-size: 14px;
+  padding: 5px 0;
+  display: block;
+  color: #7c7c7c;
+}
+
+.selected-tick {
+  position: absolute;
+  right: -16px;
+  top: -16px;
+  background-color: #fff;
+  border-radius: 100%;
+  box-shadow: 1px -1px 4px 0px #d0d0d0;
+  color: #04bc04;
+  opacity: 0;
+  transition: 0.2s all linear;
+  transform: scale(0);
+}
+
+.selectedColorFrame p {
+  border: 8px solid #fff;
+  border-bottom: 0;
+}
+
+.selectedColorFrame .selected-tick {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
+
+.family-member-hobbies {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.family-member-hobbies li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 8px;
+  padding-left: 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+
+.family-member-hobbies li i {
+  margin-left: 6px;
+  cursor: pointer;
+  vertical-align: middle;
+}

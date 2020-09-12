@@ -1,0 +1,47 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header primary-bg-color">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title" id="myModalLabel">Delete {{ modelHeader }}</h4>
+    </div>
+    <div class="modal-body">
+      <div class="delete-confirm-section">
+        <div class="icon-section">
+          <i
+            class="far fa-trash-alt"
+            data-toggle="modal"
+            data-target="#myModal"
+          ></i>
+        </div>
+        <p>
+          Are you sure, you want to delete this {{ modelHeader }}
+          <b>"{{ recordName }}"</b>
+        </p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-default secondary-btn-color"
+        data-dismiss="modal"
+      >
+        Cancel, keep this {{ modelHeader }}
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary primary-btn-color"
+        (click)="confDeleteFamily()"
+        data-dismiss="modal"
+      >
+        Yes, delete this {{ modelHeader }}
+      </button>
+    </div>
+  </div>
+</div>

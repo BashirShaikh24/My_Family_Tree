@@ -1,0 +1,70 @@
+.primary-bg-color {
+    background-color: #7f89ff;
+    color: #fff;
+  }
+  .secondary-bg-color {
+    background-color: #ffffff;
+  }
+  .third-bg-color {
+    background-color: #f1f1f1;
+  }
+  
+  .primary-font-color {
+    color: #7f89ff;
+  }
+  
+  .secondary-font-color {
+  }
+  
+  .primary-btn-color {
+    background-color: #7f89ff;
+    border-color: #7c86ff;
+    color: #fff;
+    min-width: 90px;
+  }
+  
+  .primary-btn-color:hover,
+  .primary-btn-color:active,
+  .primary-btn-color:focus,
+  .primary-btn-color:active:focus {
+    background-color: #6672ff;
+    border-color: #5664ff;
+    outline: none;
+  }
+  
+  .secondary-btn-color {
+    min-width: 90px;
+  }
+  
+  .secondary-btn-color:hover,
+  .secondary-btn-color:active,
+  .secondary-btn-color:focus,
+  .secondary-btn-color:active:focus {
+    outline: none;
+  }
+  
+  .primary-border-color {
+    border-color: #6f7aff;
+  }
+  
+  .secondary-border-color {
+    border-color: #aeb4ff;
+  }
+  
+  .sideNav-icon-color {
+    color: #606cff;
+  }
+  
+  .common-sidenav-icon-color:hover,
+  .the-family-logo {
+    background-color: #606cff;
+    box-shadow: inset 0px 0px 4px 3px #5160ff;
+  }
+  
+  .common-sidenav-icon-color:hover .sideNav-icon-color {
+    color: #7f89ff;
+  }
+  
+  .icon-section i {
+    color: #7f89ff4f;
+  }

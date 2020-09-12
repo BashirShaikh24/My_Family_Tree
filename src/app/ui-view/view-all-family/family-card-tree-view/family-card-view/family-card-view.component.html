@@ -1,0 +1,477 @@
+<mat-horizontal-stepper linear #stepper class="stepper-family-detail-view">
+  <mat-step [optional]="isOptional">
+    <ng-template matStepLabel>New Family</ng-template>
+    <div class="common-inner-container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Family Name</div>
+                  <div class="data-section">
+                    {{ familyData.familyNickName }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fad fa-users-crown"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Family Nick Name</div>
+                  <div class="data-section">
+                    {{ familyData.familyNickName }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Family Owner Name</div>
+                  <div class="data-section">
+                    {{ familyData.familyOwnerName }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Family Owner Mobile No.</div>
+                  <div class="data-section">
+                    {{ familyData.familyOwnerMobileNo }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-transgender-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Family Owner Gender</div>
+                  <div class="data-section">
+                    {{ familyData.familyOwnerGender }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-birthday-cake"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Family Owner Date of Birth</div>
+                  <div class="data-section">
+                    {{
+                      familyData.familyOwnerDateOfBirth | date: "dd-MMM-yyyy"
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-house-day"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Family Desciption</div>
+                  <div class="data-section">
+                    {{ familyData.familyDescription }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="uploaed-img-section"></div>
+        </div>
+      </div>
+      <div class="add-family-actiontbtn text-right">
+        <button
+          mat-button
+          type="submit"
+          matStepperNext
+          class="btn btn-primary primary-btn-color"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </mat-step>
+  <mat-step [optional]="isOptional">
+    <ng-template matStepLabel>Father Detail</ng-template>
+    <div class="common-inner-container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Father Name</div>
+                  <div class="data-section">
+                    {{ familyData.fatherDetail.fatherName }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Mobile No.</div>
+                  <div class="data-section">
+                    {{ familyData.fatherDetail.fatherMobileNo }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-transgender-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Gender</div>
+                  <div class="data-section">
+                    {{ familyData.fatherDetail.fatherGender }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-birthday-cake"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Date of Birth</div>
+                  <div class="data-section">
+                    {{
+                      familyData.fatherDetail.fatherDateOfBirth
+                        | date: "dd-MMM-yyyy"
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-gamepad-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Hobbies</div>
+                  <div class="data-section">
+                    <ul class="family-member-hobbies">
+                      <li
+                        *ngFor="
+                          let item of familyData.fatherDetail
+                            .fatherHobbiesArray;
+                          let i = index
+                        "
+                        class="hobbies-color family-view-hobbie"
+                      >
+                        {{ item.hobbie }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="far fa-clipboard-user"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Occupation</div>
+                  <div class="data-section">
+                    {{ familyData.fatherDetail.fatherOccupation }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">Uploaded Images</div>
+      </div>
+      <div class="add-family-actiontbtn text-right">
+        <button
+          type="button"
+          mat-button
+          matStepperPrevious
+          class="btn btn-default secondary-btn-color"
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          mat-button
+          matStepperNext
+          class="btn btn-primary primary-btn-color margin-left-10"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </mat-step>
+  <mat-step [optional]="isOptional">
+    <ng-template matStepLabel>Mother Detail</ng-template>
+    <div class="common-inner-container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-user-crown"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Mother Name</div>
+                  <div class="data-section">
+                    {{ familyData.fatherDetail.motherDetail.motherName }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Mobile No.</div>
+                  <div class="data-section">
+                    {{ familyData.fatherDetail.motherDetail.motherMobileNo }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-transgender-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Gender</div>
+                  <div class="data-section">
+                    {{ familyData.fatherDetail.motherDetail.motherGender }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-birthday-cake"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Date of Birth</div>
+                  <div class="data-section">
+                    {{
+                      familyData.fatherDetail.motherDetail.motherDateOfBirth
+                        | date: "dd-MMM-yyyy"
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-gamepad-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Hobbies</div>
+                  <div class="data-section">
+                    <ul class="family-member-hobbies">
+                      <li
+                        *ngFor="
+                          let item of familyData.fatherDetail.motherDetail
+                            .motherHobbiesArray;
+                          let i = index
+                        "
+                        class="hobbies-color family-view-hobbie"
+                      >
+                        {{ item.hobbie }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="far fa-clipboard-user"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Occupation</div>
+                  <div class="data-section">
+                    {{ familyData.fatherDetail.motherDetail.motherOccupation }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">Uploaded Images</div>
+      </div>
+      <div class="add-family-actiontbtn text-right">
+        <button
+          type="button"
+          mat-button
+          matStepperPrevious
+          class="btn btn-default secondary-btn-color"
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          mat-button
+          matStepperNext
+          class="btn btn-primary primary-btn-color margin-left-10"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </mat-step>
+  <mat-step [optional]="isOptional">
+    <ng-template matStepLabel>Children Detail</ng-template>
+    <div class="common-inner-container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Father Name</div>
+                  <div class="data-section">dadasd</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Mobile No.</div>
+                  <div class="data-section">dasd</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-transgender-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Gender</div>
+                  <div class="data-section">dadasd</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-birthday-cake"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Date of Birth</div>
+                  <div class="data-section">dasd</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-gamepad-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Hobbies</div>
+                  <div class="data-section">dadasd</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="far fa-clipboard-user"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Occupation</div>
+                  <div class="data-section">dasd</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">Uploaded Images</div>
+      </div>
+      <div class="add-family-actiontbtn text-right">
+        <button
+          type="button"
+          mat-button
+          matStepperPrevious
+          class="btn btn-default secondary-btn-color"
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          mat-button
+          matStepperNext
+          class="btn btn-primary primary-btn-color margin-left-10"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

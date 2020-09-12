@@ -1,0 +1,26 @@
+.theme-color-palette {
+  height: 140px;
+  width: 160px;
+}
+
+.theme-selected-tick {
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+  font-size: 16px;
+}
+
+.Default {
+  background-color: #7f89ff;
+  box-shadow: inset 0px -2px 2px 1px #6f7aff;
+}
+
+.Orange {
+  background-color: #ffab3e;
+  box-shadow: inset 0px -2px 2px 1px #ff7c31;
+}
+
+.Pink {
+  background-color: #ff8a8a;
+  box-shadow: inset 0px -2px 2px 1px #ff6060;
+}

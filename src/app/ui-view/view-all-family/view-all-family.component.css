@@ -1,0 +1,116 @@
+.card-wrapping-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 15px 15px;
+  grid-template-areas: ". . . .";
+}
+
+.family-member-detail-section {
+  padding: 10px;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+  background-color: #fff;
+  margin-top: -16px;
+  z-index: 1;
+  position: relative;
+}
+
+.family-member-card {
+  width: 280px;
+  box-shadow: 0px 0px 8px 1px #dcdcdc;
+  position: relative;
+  cursor: pointer;
+  min-height: 540px;
+}
+
+.family-member-img-section {
+  background-color: #f7f7f7;
+  height: 280px;
+}
+
+.family-member-img-section img {
+  width: 100%;
+}
+
+.family-member-inner-section {
+  margin-bottom: 6px;
+}
+
+.family-member-inner-section .header {
+  font-size: 12px;
+  font-weight: 400;
+  color: #8e8e8e;
+}
+
+.family-member-inner-section .detail {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.family-member-action-btn {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  padding-right: 10px;
+}
+
+.family-member-action-btn button {
+  height: 36px;
+  width: 36px;
+  background-color: #fff;
+  border-radius: 100%;
+  border: 0;
+  margin: 8px 0px;
+  font-size: 14px;
+  box-shadow: 1px 1px 3px 2px #ebebeb;
+  transition: 0.2s all linear;
+  transform: translateX(28px);
+  display: block;
+  opacity: 0;
+}
+
+.family-member-card:hover .family-member-action-btn button {
+  transform: scale(1);
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+.family-member-card:hover .family-member-action-btn .edit {
+  transition-delay: 0s;
+}
+
+.family-member-action-btn .edit {
+  color: #1492ff;
+}
+
+.family-member-action-btn .edit:hover {
+  background-color: #1492ff;
+  color: #fff;
+}
+
+.family-member-card:hover .family-member-action-btn .view {
+  transition-delay: 0.1s;
+}
+
+.family-member-action-btn .view {
+  color: #00b830;
+}
+
+.family-member-action-btn .view:hover {
+  background-color: #00b830;
+  color: #fff;
+}
+
+.family-member-card:hover .family-member-action-btn .delete {
+  transition-delay: 0.2s;
+}
+
+.family-member-action-btn .delete {
+  color: #ff3a3a;
+}
+
+.family-member-action-btn .delete:hover {
+  background-color: #ff3a3a;
+  color: #fff;
+}

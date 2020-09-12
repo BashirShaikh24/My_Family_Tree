@@ -1,0 +1,119 @@
+<div class="common-parent-container">
+  <div class="common-wrapper-container">
+    <div class="common-page-tittle primary-bg-color">All Family</div>
+    <div class="common-inner-container">
+      <div class="card-wrapping-container">
+        <div class="family-member-card" *ngFor="let item of familyMemberList">
+          <div class="family-member-action-btn">
+            <button
+              type="button"
+              class="edit"
+              routerLink="../viewAllFamily/editFamily"
+            >
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button
+              type="button"
+              class="view"
+              (click)="viewfamily(item)"
+              routerLink="../viewAllFamily/familyCardTreeView"
+            >
+              <i class="far fa-eye"></i>
+            </button>
+            <button
+              type="button"
+              class="delete"
+              data-toggle="modal"
+              data-target="#deleteFamily"
+              (click)="setDeleteFamilyId(item)"
+            >
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </div>
+          <div
+            (click)="viewfamily(item)"
+            routerLink="../viewAllFamily/familyCardTreeView"
+          >
+            <div class="family-member-img-section">
+              <img
+                src="../../assets/img/default_family_icon.png"
+                *ngIf="!item.familyDetail.familyLogo"
+                style="opacity: 0.5"
+                alt=""
+              />
+              <img
+                [src]="item.familyDetail.familyLogo"
+                *ngIf="item.familyDetail.familyLogo"
+                alt=""
+              />
+            </div>
+            <div class="family-member-detail-section">
+              <div class="family-member-inner-section">
+                <div class="header">Family Name</div>
+                <div class="detail">
+                  {{
+                    item.familyDetail.familyName
+                      ? item.familyDetail.familyName
+                      : "-"
+                  }}
+                </div>
+              </div>
+              <div class="family-member-inner-section">
+                <div class="header">Date of Birth</div>
+                <div class="detail">
+                  {{
+                    item.familyDetail.familyOwnerDateOfBirth
+                      ? (item.familyDetail.familyOwnerDateOfBirth
+                        | date: "dd-MMM-yyyy")
+                      : "-"
+                  }}
+                </div>
+              </div>
+              <div class="family-member-inner-section">
+                <div class="header">Gender</div>
+                <div class="detail">
+                  {{
+                    item.familyDetail.familyOwnerGender
+                      ? item.familyDetail.familyOwnerGender
+                      : "-"
+                  }}
+                </div>
+              </div>
+              <div class="family-member-inner-section">
+                <div class="header">Mobile No.</div>
+                <div class="detail">
+                  {{
+                    item.familyDetail.familyOwnerMobileNo
+                      ? item.familyDetail.familyOwnerMobileNo
+                      : "-"
+                  }}
+                </div>
+              </div>
+              <div class="family-member-inner-section">
+                <div class="header">Desciption</div>
+                <div class="detail">
+                  {{
+                    item.familyDetail.familyDescription
+                      ? (item.familyDetail.familyDescription | shorten: 100)
+                      : "-"
+                  }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delete Family -->
+      <div
+        class="modal fade"
+        id="deleteFamily"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+      >
+        <app-delete [getRecordId]="familyId" [modelHeader]="'Family'" [recordName]="familyName"></app-delete>
+      </div>
+    </div>
+  </div>
+</div>

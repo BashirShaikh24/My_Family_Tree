@@ -1,0 +1,14 @@
+.delete-confirm-section{
+    margin: auto 0;
+    text-align: center;
+}
+
+.delete-confirm-section i{
+    font-size: 80px;
+    margin: 10px 0;
+}
+
+.delete-confirm-section p{
+    font-size: 18px;
+    margin: 10px 0;
+}

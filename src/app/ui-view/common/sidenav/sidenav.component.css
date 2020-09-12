@@ -1,0 +1,28 @@
+.family-tree-sideNav {
+  width: 120px;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 20px;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.side-menu {
+  padding: 25px 15px;
+  text-align: center;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  cursor: pointer;
+  transition: 0.3s all linear;
+}
+.side-menu i {
+  font-size: 38px;
+  transition: 0.2s all linear;
+}
+.side-menu p {
+  margin: 0;
+  margin-top: 5px;
+  font-size: 12px;
+}

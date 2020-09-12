@@ -1,0 +1,24 @@
+<div class="common-parent-container">
+  <div class="common-wrapper-container">
+    <div class="common-page-tittle primary-bg-color">Themes</div>
+    <div class="common-inner-container">
+      <ul class="checkbox-parent-container">
+        <li
+          class="checkbox-inner-container"
+          *ngFor="let item of colorList"
+          [ngClass]="{ selectedColorFrame: item.color == selectedColor }"
+          (click)="selectThemeColor(item)"
+        >
+          <p [ngClass]="item.color" class="theme-color-palette">
+            <b class="selected-tick theme-selected-tick"> <i class="fas fa-check"></i></b>
+          </p>
+          <span>{{ item.color }}</span>
+        </li>
+      </ul>
+      <!-- <form #themeColor="ngForm" (submit)="addColor()">
+        <input type="text" name="color" ngModel />
+        <button type="submit">add</button>
+      </form> -->
+    </div>
+  </div>
+</div>

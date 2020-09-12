@@ -1,0 +1,91 @@
+<div class="family-tree-background primary-bg-color">
+  <div class="login-section">
+    <div class="logReg-tabs-section">
+      <div
+        class="logReg-tab"
+        [ngClass]="{ active: signup }"
+        (click)="loginRegMode('signup')"
+      >
+        Sign Up
+      </div>
+      <div
+        class="logReg-tab"
+        [ngClass]="{ active: !signup }"
+        (click)="loginRegMode(login)"
+      >
+        Login
+      </div>
+    </div>
+    <div class="login-inner-section">
+      <form #loginDetails="ngForm" (submit)="getLoginDetails()">
+        <div class="form-group" *ngIf="signup">
+          <label>User Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="userName"
+            ngModel
+            userName
+            #userName="ngModel"
+            required
+          />
+          <p class="common-error" *ngIf="!userName.valid && userName.touched">
+            Provid Valid User Name
+          </p>
+          <p class="common-error" *ngIf="validUserName && !userName.touched">
+            Provid User Name
+          </p>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            ngModel
+            email
+            #email="ngModel"
+            required
+          />
+          <p class="common-error" *ngIf="!email.valid && email.touched">
+            Provid Valid Email
+          </p>
+          <p class="common-error" *ngIf="validEmail && !email.touched">
+            Provid Email
+          </p>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            ngModel
+            #password="ngModel"
+            required
+          />
+          <p class="common-error" *ngIf="!password.valid && password.touched">
+            Provid Valid Password
+          </p>
+          <p class="common-error" *ngIf="validPassword && !password.touched">
+            Provid Password
+          </p>
+        </div>
+        <button
+          type="submit"
+          *ngIf="signup"
+          class="btn btn-primary primary-btn-color btn-block login-reg-btn"
+        >
+          Sign Up
+        </button>
+        <button
+          type="submit"
+          *ngIf="!signup"
+          class="btn btn-primary primary-btn-color btn-block login-reg-btn"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

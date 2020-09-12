@@ -1,0 +1,62 @@
+.subDetailContainer {
+  position: relative;
+  padding-left: 50px;
+  border: 2px solid #ededed;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+.subDetailContainer .icon-section {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 54px;
+  background-color: #ededed;
+  z-index: 1;
+}
+
+.subDetailContainer .icon-section i {
+  transform: translate(-56%, -50%);
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  font-size: 22px;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.detail-section {
+  padding: 5px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  z-index: 105;
+  position: relative;
+  background-color: #fff;
+}
+
+.label-section {
+  font-size: 12px;
+  color: #5d5d5d;
+}
+
+.data-section {
+  color: #2c2c2c;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.uploaed-img-section {
+  height: 250px;
+  width: 250px;
+  background-color: white;
+  border: 10px solid #ededed;
+  box-shadow: 0px 0px 3px 3px #fdfdfd;
+  margin: 15px auto;
+  position: relative;
+}
+
+.family-view-hobbie {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 4px;
+}

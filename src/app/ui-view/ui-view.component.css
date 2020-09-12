@@ -1,0 +1,15 @@
+.base-section {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.base-inner-section {
+  left: 130px;
+  right: 10px;
+  top: 70px;
+  bottom: 30px;
+  box-shadow: 0px 0px 2px 1px #d6d6d6;
+  position: absolute;
+  border-radius: 3px;
+}
