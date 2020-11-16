@@ -14,7 +14,9 @@ export class LoginComponent {
   validPassword = false;
   validUserName = false;
 
-  constructor(private authService: AuhtService) {}
+  constructor(private authService: AuhtService) {
+    this.authService.LogOut();
+  }
 
   loginRegMode(type: string) {
     this.signup = !this.signup;
@@ -24,24 +26,6 @@ export class LoginComponent {
     const emailId = this.userDetails.value.email;
     const password = this.userDetails.value.password;
     const userName = this.userDetails.value.userName;
-    if (emailId && password) {
-      if (this.signup) {
-        this.authService.SignUp(userName, emailId, password);
-      } else {
-        this.authService.SignIn(emailId, password);
-      }
-    } else {
-      if (!emailId) {
-        this.validEmail = true;
-      }
-      if (!password) {
-        this.validPassword = true;
-      }
-      if (!userName) {
-        this.validUserName = true;
-      }
-    }
-
     if (this.signup) {
       if (emailId && password && userName) {
         this.authService.SignUp(userName, emailId, password);

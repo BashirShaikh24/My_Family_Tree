@@ -1,12 +1,11 @@
 .family-tree-background {
-  background-image: url(../../../assets/img/Family-tree-3.png);
+  background-image: url(../../../assets/img/bg2.png);
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   background-position: left;
-  background-repeat: no-repeat;
 }
 
 .login-section {
@@ -24,6 +23,7 @@
 .login-inner-section {
   padding: 15px;
 }
+
 .logReg-tabs-section {
   overflow: hidden;
 }
@@ -46,10 +46,17 @@
   color: #3d3d3d;
 }
 
-.login-reg-btn{
+.login-reg-btn {
   padding: 12px;
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 500;
   margin-top: 30px;
+}
+
+@media only screen and (max-width: 767px) {
+  .login-section {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

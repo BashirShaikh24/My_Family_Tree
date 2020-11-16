@@ -1,5 +1,12 @@
-<ol class="breadcrumb">
-    <li><a routerLink="../../viewAllFamily">All Family</a></li>
-    <li class="active">View Family</li>
+<div class="common-parent-container">
+  <ol class="breadcrumb">
+    <li>
+      <a (click)="onbackToAllFamily()">All Family</a>
+      <i class="fas fa-chevron-right breadCrumb-arrow"></i>
+    </li>
+    <li class="active">Edit Family</li>
   </ol>
-<app-add-new-family></app-add-new-family>
+  <div class="common-wrapper-container">
+    <app-add-new-family [familyData]="setFamilyData" [familyId]="setFamilyId"></app-add-new-family>
+  </div>
+</div>

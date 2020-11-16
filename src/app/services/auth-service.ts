@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import * as firebase from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
@@ -12,6 +12,8 @@ import {
   MatSnackBarVerticalPosition,
 } from "@angular/material/snack-bar";
 import { ThemeService } from "./theme.service";
+import { DOCUMENT } from "@angular/common";
+import { environment } from "../../environments/environment";
 
 export interface User {
   uid: string;
@@ -29,6 +31,7 @@ export class AuhtService {
   userDetails: any;
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private afs: AngularFirestore,
     private afAuth: AngularFireAuth,
     private _snackBar: MatSnackBar,
@@ -47,9 +50,12 @@ export class AuhtService {
           })
           .then(() => {
             this.userDetails = result.user;
-            this.userDetails.themeColor = "Default";
-            this.themeService.setThemeColorService("Default", user.uid);
-            this.themeService.setTheme("Default");
+            this.userDetails.themeColor = environment.defaultTheme;
+            this.themeService.setThemeColorService(
+              environment.defaultTheme,
+              user.uid
+            );
+            this.themeService.setTheme(environment.defaultTheme);
             this.router.navigate(["/uiview/dashboard"]);
           });
       })
@@ -74,8 +80,11 @@ export class AuhtService {
               this.themeService.setTheme(userColor);
               this.userDetails.themeColor = userColor;
             } else {
-              this.themeService.setThemeColorService("Default", result.user.uid);
-              this.userDetails.themeColor = "Default";
+              this.themeService.setThemeColorService(
+                environment.defaultTheme,
+                result.user.uid
+              );
+              this.userDetails.themeColor = environment.defaultTheme;
             }
             this.router.navigate(["/uiview/dashboard"]);
           });
@@ -110,8 +119,13 @@ export class AuhtService {
   }
 
   LogOut() {
-    this.afAuth.signOut();
+    const head = this.document.getElementsByTagName("head")[0];
+    const style = this.document.getElementById("client-theme");
+    style.setAttribute("href", `${environment.defaultTheme}.css`);
+    head.appendChild(style);
     localStorage.clear();
     this.router.navigate(["./"]);
+    this.afAuth.signOut();
+    this.userDetails = "";
   }
 }

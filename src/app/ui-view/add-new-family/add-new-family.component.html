@@ -1,13 +1,18 @@
-<div class="common-parent-container">
+<div class="common-parent-container" [ngClass]="{ editMode: familyData }">
   <div class="common-wrapper-container">
-    <div class="common-page-tittle primary-bg-color">Add New Family</div>
+    <div class="common-page-tittle primary-bg-color">
+      {{ familyData ? "Edit Family" : "Add New Family" }}
+    </div>
     <mat-horizontal-stepper linear #stepper>
-      <mat-step [stepControl]="familyDetail" [optional]="isOptional">
+      <mat-step
+        [stepControl]="familyDetail"
+        [optional]="familyData && familyDetail.valid ? true : false"
+      >
         <form [formGroup]="familyDetail">
-          <ng-template matStepLabel>Add New Family</ng-template>
+          <ng-template matStepLabel>Family Details</ng-template>
           <div class="common-inner-container">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-8 col-sm-8">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -20,7 +25,7 @@
                       />
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Family Nick Name </label>
                       <input
@@ -32,7 +37,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Family Owner Name <sup>*</sup></label>
                       <input
@@ -44,7 +49,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Family Owner Mobile No. <sup>*</sup></label>
                       <input
@@ -59,7 +64,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Family Owner Gender</label>
                       <div class="checkbox-parent-container">
@@ -112,13 +117,14 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Family Owner Date of Birth <sup>*</sup></label>
-                      <div class="common-calender-section">
+                      <!-- <div class="common-calender-section">
                         <input
                           class="form-control"
-                          [matDatepicker]="familyOwnerDateOfBirth"
+                          matInput
+                          [matDatepicker]="familyOwnerDateOfBirthPicker"
                           [max]="maxDate"
                           formControlName="familyOwnerDateOfBirth"
                           readonly
@@ -126,17 +132,24 @@
                         />
                         <mat-datepicker-toggle
                           matSuffix
-                          [for]="familyOwnerDateOfBirth"
+                          [for]="familyOwnerDateOfBirthPicker"
                         ></mat-datepicker-toggle>
                         <mat-datepicker
-                          #familyOwnerDateOfBirth
+                          #familyOwnerDateOfBirthPicker
                         ></mat-datepicker>
-                      </div>
+                      </div> -->
+                      <input
+                        class="form-control"
+                        type="date"
+                        [max]="maxDate"
+                        formControlName="familyOwnerDateOfBirth"
+                        required
+                      />
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-12 col-sm-12">
                     <div class="form-group">
                       <label>Family Desciption</label>
                       <textarea
@@ -148,7 +161,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4 col-sm-4">
                 <div class="family-upload-img-continer secondary-border-color">
                   <input
                     id="file"
@@ -184,10 +197,17 @@
             </div>
             <div class="add-family-actiontbtn text-right">
               <button
-                mat-button
+                type="button"
+                *ngIf="familyData"
+                routerLink="../../viewAllFamily"
+                class="btn btn-default secondary-btn-color"
+              >
+                Back
+              </button>
+              <button
                 type="submit"
                 matStepperNext
-                class="btn btn-primary primary-btn-color"
+                class="btn btn-primary primary-btn-color margin-left-10"
               >
                 Next
               </button>
@@ -195,14 +215,17 @@
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="fatherDetail" [optional]="isOptional">
+      <mat-step
+        [stepControl]="fatherDetail"
+        [optional]="familyData && fatherDetail.valid ? true : false"
+      >
         <form [formGroup]="fatherDetail">
-          <ng-template matStepLabel>Add Father Detail</ng-template>
+          <ng-template matStepLabel>Father Details </ng-template>
           <div class="common-inner-container">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-8 col-sm-8">
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Father Name <sup>*</sup></label>
                       <input
@@ -213,7 +236,7 @@
                       />
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Mobile No. <sup>*</sup></label>
                       <input
@@ -228,7 +251,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Gender</label>
                       <div class="checkbox-parent-container">
@@ -249,6 +272,7 @@
                               id="fatherGender"
                               name="fatherGender"
                               formControlName="fatherGender"
+                              disabled
                               value="Male"
                             />
                           </p>
@@ -271,6 +295,7 @@
                               id="fatherGender"
                               name="fatherGender"
                               formControlName="fatherGender"
+                              disabled
                               value="Female"
                             />
                           </p>
@@ -279,13 +304,13 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Date of Birth <sup>*</sup></label>
-                      <div class="common-calender-section">
+                      <!-- <div class="common-calender-section">
                         <input
                           class="form-control"
-                          [matDatepicker]="fatherDateOfBirth"
+                          [matDatepicker]="fatherDateOfBirthPicker"
                           [max]="maxDate"
                           formControlName="fatherDateOfBirth"
                           readonly
@@ -293,15 +318,24 @@
                         />
                         <mat-datepicker-toggle
                           matSuffix
-                          [for]="fatherDateOfBirth"
+                          [for]="fatherDateOfBirthPicker"
                         ></mat-datepicker-toggle>
-                        <mat-datepicker #fatherDateOfBirth></mat-datepicker>
-                      </div>
+                        <mat-datepicker
+                          #fatherDateOfBirthPicker
+                        ></mat-datepicker>
+                      </div> -->
+                      <input
+                        class="form-control"
+                        type="date"
+                        [max]="maxDate"
+                        formControlName="fatherDateOfBirth"
+                        required
+                      />
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group" [formGroup]="hobbiesDetail">
                       <label>Hobbies</label>
                       <div class="input-group">
@@ -336,8 +370,9 @@
                     >
                       <li
                         *ngFor="
-                          let item of fatherDetail.get('fatherHobbiesArray')
-                            .controls;
+                          let item of fatherDetail.get('fatherHobbiesArray')[
+                            'controls'
+                          ];
                           let i = index
                         "
                         class="hobbies-color"
@@ -357,7 +392,7 @@
                       </li>
                     </ul>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Occupation <sup>*</sup></label>
                       <input
@@ -370,7 +405,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4 col-sm-4">
                 <div class="family-upload-img-continer secondary-border-color">
                   <input
                     id="file"
@@ -407,7 +442,6 @@
             <div class="add-family-actiontbtn text-right">
               <button
                 type="button"
-                mat-button
                 matStepperPrevious
                 class="btn btn-default secondary-btn-color"
               >
@@ -415,7 +449,6 @@
               </button>
               <button
                 type="button"
-                mat-button
                 matStepperNext
                 class="btn btn-primary primary-btn-color margin-left-10"
               >
@@ -425,14 +458,17 @@
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="motherDetail" [optional]="isOptional">
+      <mat-step
+        [stepControl]="motherDetail"
+        [optional]="familyData && motherDetail.valid ? true : false"
+      >
         <form [formGroup]="motherDetail">
-          <ng-template matStepLabel>Add Mother Detail</ng-template>
+          <ng-template matStepLabel>Mother Details </ng-template>
           <div class="common-inner-container">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-8 col-sm-8">
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Mother Name <sup>*</sup></label>
                       <input
@@ -443,7 +479,7 @@
                       />
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Mobile No. <sup>*</sup></label>
                       <input
@@ -458,7 +494,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Gender</label>
                       <div class="checkbox-parent-container">
@@ -479,6 +515,7 @@
                               id="motherGender"
                               name="motherGender"
                               formControlName="motherGender"
+                              disabled
                               value="Male"
                             />
                           </p>
@@ -501,6 +538,7 @@
                               id="motherGender"
                               name="motherGender"
                               formControlName="motherGender"
+                              disabled
                               value="Female"
                             />
                           </p>
@@ -509,13 +547,13 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Date of Birth <sup>*</sup></label>
-                      <div class="common-calender-section">
+                      <!-- <div class="common-calender-section">
                         <input
                           class="form-control"
-                          [matDatepicker]="motherDateOfBirth"
+                          [matDatepicker]="motherDateOfBirthPicker"
                           [max]="maxDate"
                           formControlName="motherDateOfBirth"
                           readonly
@@ -523,15 +561,24 @@
                         />
                         <mat-datepicker-toggle
                           matSuffix
-                          [for]="motherDateOfBirth"
+                          [for]="motherDateOfBirthPicker"
                         ></mat-datepicker-toggle>
-                        <mat-datepicker #motherDateOfBirth></mat-datepicker>
-                      </div>
+                        <mat-datepicker
+                          #motherDateOfBirthPicker
+                        ></mat-datepicker>
+                      </div> -->
+                      <input
+                        class="form-control"
+                        type="date"
+                        [max]="maxDate"
+                        formControlName="motherDateOfBirth"
+                        required
+                      />
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group" [formGroup]="hobbiesDetail">
                       <label>Hobbies</label>
                       <div class="input-group">
@@ -566,8 +613,9 @@
                     >
                       <li
                         *ngFor="
-                          let item of motherDetail.get('motherHobbiesArray')
-                            .controls;
+                          let item of motherDetail.get('motherHobbiesArray')[
+                            'controls'
+                          ];
                           let i = index
                         "
                         class="hobbies-color"
@@ -587,7 +635,7 @@
                       </li>
                     </ul>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Occupation <sup>*</sup></label>
                       <input
@@ -600,7 +648,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4 col-sm-4">
                 <div class="family-upload-img-continer secondary-border-color">
                   <input
                     id="file"
@@ -637,7 +685,6 @@
             <div class="add-family-actiontbtn text-right">
               <button
                 type="button"
-                mat-button
                 matStepperPrevious
                 class="btn btn-default secondary-btn-color"
               >
@@ -645,7 +692,6 @@
               </button>
               <button
                 type="button"
-                mat-button
                 matStepperNext
                 class="btn btn-primary primary-btn-color margin-left-10"
               >
@@ -657,12 +703,12 @@
       </mat-step>
       <mat-step [stepControl]="childrenDetail" [optional]="isOptional">
         <form [formGroup]="childrenDetail" (submit)="getFamilyDetails()">
-          <ng-template matStepLabel>Add Children Detail</ng-template>
+          <ng-template matStepLabel>Add Children Details</ng-template>
           <div class="common-inner-container">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-8 col-sm-8">
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Children Name <sup>*</sup></label>
                       <input
@@ -673,7 +719,7 @@
                       />
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Mobile No. <sup>*</sup></label>
                       <input
@@ -688,7 +734,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Gender</label>
                       <div class="checkbox-parent-container">
@@ -741,13 +787,13 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Date of Birth <sup>*</sup></label>
-                      <div class="common-calender-section">
+                      <!-- <div class="common-calender-section">
                         <input
                           class="form-control"
-                          [matDatepicker]="childrenDateOfBirth"
+                          [matDatepicker]="childrenDateOfBirthPicker"
                           [max]="maxDate"
                           formControlName="childrenDateOfBirth"
                           readonly
@@ -755,15 +801,24 @@
                         />
                         <mat-datepicker-toggle
                           matSuffix
-                          [for]="childrenDateOfBirth"
+                          [for]="childrenDateOfBirthPicker"
                         ></mat-datepicker-toggle>
-                        <mat-datepicker #childrenDateOfBirth></mat-datepicker>
-                      </div>
+                        <mat-datepicker
+                          #childrenDateOfBirthPicker
+                        ></mat-datepicker>
+                      </div> -->
+                      <input
+                        class="form-control"
+                        type="date"
+                        [max]="maxDate"
+                        formControlName="childrenDateOfBirth"
+                        required
+                      />
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group" [formGroup]="hobbiesDetail">
                       <label>Hobbies</label>
                       <div class="input-group">
@@ -799,8 +854,9 @@
                     >
                       <li
                         *ngFor="
-                          let item of childrenDetail.get('childrenHobbiesArray')
-                            .controls;
+                          let item of childrenDetail.get(
+                            'childrenHobbiesArray'
+                          )['controls'];
                           let i = index
                         "
                         class="hobbies-color"
@@ -820,7 +876,7 @@
                       </li>
                     </ul>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                       <label>Occupation <sup>*</sup></label>
                       <input
@@ -833,7 +889,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4 col-sm-4">
                 <div class="family-upload-img-continer secondary-border-color">
                   <input
                     id="file"
@@ -873,7 +929,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-8 col-sm-8">
                 <div class="add-family-actiontbtn text-right">
                   <button
                     type="button"
@@ -885,40 +941,42 @@
                   <button
                     type="button"
                     [disabled]="!childrenDetail.valid"
-                    (click)="addChildren()"
+                    (click)="addEditChildren()"
                     class="btn btn-primary primary-btn-color margin-left-10"
                   >
                     Save
                   </button>
                 </div>
               </div>
-              <div class="col-md-4"></div>
+              <div class="col-md-4 col-sm-4"></div>
             </div>
 
-            <div
-              class="common-table-container"
-              [formGroup]="childrenArrayDetail"
-            >
+            <div class="common-table-container">
               <div class="child-table-header primary-bg-color">
-                <div class="col-md-3">Name / Occupation</div>
-                <div class="col-md-1">Mobile No.</div>
-                <div class="col-md-1">Gender</div>
-                <div class="col-md-2">Date of Birth</div>
-                <div class="col-md-3">Hobbies</div>
-                <div class="col-md-2"></div>
+                <div class="col-md-3 col-sm-3 col-xs-3">Name / Occupation</div>
+                <div class="col-md-1 col-sm-1 col-xs-1">Mobile No.</div>
+                <div class="col-md-1 col-sm-1 col-xs-1">Gender</div>
+                <div class="col-md-2 col-sm-2 col-xs-2">Date of Birth</div>
+                <div class="col-md-3 col-sm-3 col-xs-3">Hobbies</div>
+                <div class="col-md-2 col-sm-2 col-xs-2"></div>
               </div>
               <div class="child-table-body table-record-color">
                 <div
                   class="child-record"
-                  *ngFor="
-                    let item of childrenArrayDetail.get('childrenArray').value;
-                    let i = index
-                  "
+                  *ngFor="let item of childrenArrayDetail; let i = index"
                 >
-                  <div class="col-md-3 child-name-section">
+                  <div class="col-md-3 col-sm-3 col-xs-3 child-name-section">
                     <img
-                      *ngIf="!item.childrenLogo"
-                      src="../../../../assets/img/Family-tree-3.png"
+                      *ngIf="
+                        !item.childrenLogo && item.childrenGender == 'Female'
+                      "
+                      src="../../../../assets/img/girl-default.png"
+                    />
+                    <img
+                      *ngIf="
+                        !item.childrenLogo && item.childrenGender == 'Male'
+                      "
+                      src="../../../../assets/img/boy-default.png"
                     />
                     <img *ngIf="item.childrenLogo" [src]="item.childrenLogo" />
                     <div class="child-name-inner-section">
@@ -926,33 +984,45 @@
                         {{ item.childrenName ? item.childrenName : "-" }}
                       </p>
                       <p class="occupation">
-                        {{ item.childrenOccupation ? item.childrenName : "-" }}
+                        {{
+                          item.childrenOccupation
+                            ? item.childrenOccupation
+                            : "-"
+                        }}
                       </p>
                     </div>
                   </div>
-                  <div class="col-md-1 child-detais">
+                  <div class="col-md-1 col-sm-1 col-xs-1 child-detais">
                     <p class="title">
                       {{ item.childrenMobileNo ? item.childrenMobileNo : "-" }}
                     </p>
                   </div>
-                  <div class="col-md-1 child-detais">
+                  <div class="col-md-1 col-sm-1 col-xs-1 child-detais">
                     <p class="title">
                       {{ item.childrenGender ? item.childrenGender : "-" }}
                     </p>
                   </div>
-                  <div class="col-md-2 child-detais">
+                  <div class="col-md-2 col-sm-2 col-xs-2 child-detais">
                     <p class="title">
-                      {{
-                        (item.childrenDateOfBirth
-                          ? item.childrenDateOfBirth
-                          : "-"
-                        ) | date: "dd-MMM-yyyy"
-                      }}
+                      {{ item.childrenDateOfBirth | date: "dd-MMM-yyyy" }}
                     </p>
                   </div>
-                  <div class="col-md-3 child-detais hobbies-section-pad">
-                    <ul class="family-member-hobbies">
-                      <p *ngIf="item.childrenHobbiesArray.length === 0">-</p>
+                  <div
+                    class="col-md-3 col-sm-3 col-xs-3 child-detais hobbies-section-pad"
+                  >
+                    <p *ngIf="!item?.childrenHobbiesArray">-</p>
+                    <p *ngIf="item?.childrenHobbiesArray">
+                      <span *ngIf="item?.childrenHobbiesArray.length == 0"
+                        >-</span
+                      >
+                    </p>
+                    <ul
+                      class="family-member-hobbies"
+                      *ngIf="
+                        item.childrenHobbiesArray &&
+                        item.childrenHobbiesArray.length > 0
+                      "
+                    >
                       <li
                         *ngFor="
                           let hobbies of item.childrenHobbiesArray;
@@ -986,7 +1056,7 @@
                       </mat-menu>
                     </ul>
                   </div>
-                  <div class="col-md-2 children-btn-action">
+                  <div class="col-md-2 col-sm-2 col-xs-2 children-btn-action">
                     <div class="ms-nav-container">
                       <ul class="ms-nav">
                         <input
@@ -1007,6 +1077,7 @@
                           class="ms-li ms-li2"
                           data-toggle="modal"
                           data-target="#viewChildren"
+                          (click)="viewChildren(item)"
                         >
                           <a>
                             <span class="far fa-eye"></span>
@@ -1039,7 +1110,7 @@
                 </div>
                 <div
                   class="no-record-found"
-                  *ngIf="childrenArrayDetail.get('childrenArray').length === 0"
+                  *ngIf="childrenArrayDetail.length === 0"
                 >
                   No Record Found
                 </div>
@@ -1048,7 +1119,6 @@
             <div class="add-family-actiontbtn text-right">
               <button
                 type="button"
-                mat-button
                 matStepperPrevious
                 class="btn btn-default secondary-btn-color"
               >
@@ -1056,10 +1126,9 @@
               </button>
               <button
                 type="submit"
-                mat-button
                 class="btn btn-primary primary-btn-color margin-left-10"
               >
-                Submit
+                {{ familyData ? "Update" : "Submit" }}
               </button>
             </div>
           </div>
@@ -1067,7 +1136,7 @@
       </mat-step>
     </mat-horizontal-stepper>
   </div>
-  
+
   <!-- Delete Children -->
   <div
     class="modal fade"
@@ -1091,87 +1160,6 @@
     role="dialog"
     aria-labelledby="myModalLabel"
   >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header primary-bg-color">
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Delete das</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="subDetailContainer">
-                <div class="icon-section">
-                  <i class="fas fa-users"></i>
-                </div>
-                <div class="detail-section">
-                  <div class="label-section">Family Name</div>
-                  <div class="data-section">dsa</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="subDetailContainer">
-                <div class="icon-section">
-                  <i class="fad fa-users-crown"></i>
-                </div>
-                <div class="detail-section">
-                  <div class="label-section">Family Nick Name</div>
-                  <div class="data-section">das</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="subDetailContainer">
-                <div class="icon-section">
-                  <i class="fas fa-user-tie"></i>
-                </div>
-                <div class="detail-section">
-                  <div class="label-section">Family Owner Name</div>
-                  <div class="data-section">ddsa</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="subDetailContainer">
-                <div class="icon-section">
-                  <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="detail-section">
-                  <div class="label-section">Family Owner Mobile No.</div>
-                  <div class="data-section">dsa</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-default secondary-btn-color"
-            data-dismiss="modal"
-          >
-            Cancel, keep this dsa
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary primary-btn-color"
-            (click)="confDeleteFamily()"
-            data-dismiss="modal"
-          >
-            Yes, delete this dsa
-          </button>
-        </div>
-      </div>
-    </div>
+    <app-view-children [childrenData]="childrenData"></app-view-children>
   </div>
 </div>

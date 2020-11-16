@@ -12,7 +12,7 @@
           <p [ngClass]="item.color" class="theme-color-palette">
             <b class="selected-tick theme-selected-tick"> <i class="fas fa-check"></i></b>
           </p>
-          <span>{{ item.color }}</span>
+          <span>{{ item.color | titlecase}}</span>
         </li>
       </ul>
       <!-- <form #themeColor="ngForm" (submit)="addColor()">

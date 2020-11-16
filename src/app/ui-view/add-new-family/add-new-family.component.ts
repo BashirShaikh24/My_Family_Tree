@@ -1,76 +1,161 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CommonService } from "src/app/services/common.service";
 import { AuhtService } from "src/app/services/auth-service";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
+import * as moment from "moment";
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-add-new-family",
   templateUrl: "./add-new-family.component.html",
-  styleUrls: [
-    "./add-new-family.component.css",
-    "../view-all-family/family-card-tree-view/family-card-view/family-card-view.component.css",
-  ],
+  styleUrls: ["./add-new-family.component.css"],
 })
 export class AddNewFamilyComponent implements OnInit {
+  @Input() familyData: any;
+  @Input() familyId: any;
   familyDetail: FormGroup;
   fatherDetail: FormGroup;
   motherDetail: FormGroup;
   childrenDetail: FormGroup;
-  childrenArrayDetail: FormGroup;
+  childrenArrayDetail = [];
   hobbiesDetail: FormGroup;
   hobbiesArray: FormArray;
-  childrenArray: FormArray;
   userDetails: any;
   childrenId: string;
   childrenName: string;
+  childrenData: any;
+  editMode: boolean = false;
+  childrenIndex: string;
   isOptional = true;
-  maxDate = new Date();
+  maxDate = moment().format("YYYY-MM-DD");
+  snackBarRef: any;
+  horizontalPosition: MatSnackBarHorizontalPosition = "center";
+  verticalPosition: MatSnackBarVerticalPosition = "top";
+
   private onDestroySubscription: Subject<void> = new Subject<void>();
 
   constructor(
     private commonservice: CommonService,
     private http: Router,
     private formBuilder: FormBuilder,
-    private authService: AuhtService
+    private authService: AuhtService,
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {
     this.deleteChildren();
   }
 
   ngOnInit() {
+    var checkMode = this.router.url.includes("editFamily", 0);
+    if (!checkMode) {
+      this.familyData = "";
+    }
     this.userDetails = this.authService.userDetails;
-
     this.familyDetail = this.formBuilder.group({
-      familyName: ["", Validators.required],
-      familyNickName: [""],
-      familyOwnerName: ["", Validators.required],
-      familyOwnerMobileNo: ["", Validators.required],
-      familyOwnerGender: ["Male"],
-      familyOwnerDateOfBirth: ["", Validators.required],
-      familyDescription: [""],
-      familyLogo: [""],
+      familyName: [
+        this.familyData ? this.familyData.familyName : "",
+        Validators.required,
+      ],
+      familyNickName: [this.familyData ? this.familyData.familyNickName : ""],
+      familyOwnerName: [
+        this.familyData ? this.familyData.familyOwnerName : "",
+        Validators.required,
+      ],
+      familyOwnerMobileNo: [
+        this.familyData ? this.familyData.familyOwnerMobileNo : "",
+        Validators.required,
+      ],
+      familyOwnerGender: [
+        this.familyData ? this.familyData.familyOwnerGender : "Male",
+      ],
+      familyOwnerDateOfBirth: [
+        this.familyData ? this.familyData.familyOwnerDateOfBirth : "",
+        Validators.required,
+      ],
+      familyDescription: [
+        this.familyData ? this.familyData.familyDescription : "",
+      ],
+      familyLogo: [this.familyData ? this.familyData.familyLogo : ""],
     });
 
     this.fatherDetail = this.formBuilder.group({
-      fatherName: ["", Validators.required],
-      fatherMobileNo: ["", Validators.required],
-      fatherGender: ["Male"],
-      fatherDateOfBirth: ["", Validators.required],
-      fatherHobbiesArray: this.formBuilder.array([]),
-      fatherOccupation: ["", Validators.required],
-      fatherLogo: [""],
+      fatherName: [
+        this.familyData ? this.familyData.fatherDetail.fatherName : "",
+        Validators.required,
+      ],
+      fatherMobileNo: [
+        this.familyData ? this.familyData.fatherDetail.fatherMobileNo : "",
+        Validators.required,
+      ],
+      fatherGender: [
+        this.familyData ? this.familyData.fatherDetail.fatherGender : "Male",
+      ],
+      fatherDateOfBirth: [
+        this.familyData ? this.familyData.fatherDetail.fatherDateOfBirth : "",
+        Validators.required,
+      ],
+      fatherHobbiesArray: this.familyData.fatherDetail?.fatherHobbiesArray
+        ? this.setExistingHobbies(
+            this.familyData.fatherDetail.fatherHobbiesArray
+          )
+        : this.formBuilder.array([]),
+      fatherOccupation: [
+        this.familyData ? this.familyData.fatherDetail.fatherOccupation : "",
+        Validators.required,
+      ],
+      fatherLogo: [
+        this.familyData ? this.familyData.fatherDetail.fatherLogo : "",
+      ],
     });
 
     this.motherDetail = this.formBuilder.group({
-      motherName: ["", Validators.required],
-      motherMobileNo: ["", Validators.required],
-      motherGender: [{ value: "Female", disabled: true }],
-      motherDateOfBirth: ["", Validators.required],
-      motherHobbiesArray: this.formBuilder.array([]),
-      motherOccupation: ["", Validators.required],
-      motherLogo: [""],
+      motherName: [
+        this.familyData
+          ? this.familyData.fatherDetail.motherDetail.motherName
+          : "",
+        Validators.required,
+      ],
+      motherMobileNo: [
+        this.familyData
+          ? this.familyData.fatherDetail.motherDetail.motherMobileNo
+          : "",
+        Validators.required,
+      ],
+      motherGender: [
+        this.familyData
+          ? this.familyData.fatherDetail.motherDetail.motherGender
+          : "Female",
+      ],
+      motherDateOfBirth: [
+        this.familyData
+          ? this.familyData.fatherDetail.motherDetail.motherDateOfBirth
+          : "",
+        Validators.required,
+      ],
+      motherHobbiesArray: this.familyData.fatherDetail?.motherDetail
+        .motherHobbiesArray
+        ? this.setExistingHobbies(
+            this.familyData.fatherDetail.motherDetail.motherHobbiesArray
+          )
+        : this.formBuilder.array([]),
+      motherOccupation: [
+        this.familyData
+          ? this.familyData.fatherDetail.motherDetail.motherOccupation
+          : "",
+        Validators.required,
+      ],
+      motherLogo: [
+        this.familyData
+          ? this.familyData.fatherDetail.motherDetail.motherLogo
+          : "",
+      ],
     });
 
     this.childrenDetail = this.formBuilder.group({
@@ -83,13 +168,13 @@ export class AddNewFamilyComponent implements OnInit {
       childrenLogo: [""],
     });
 
-    this.childrenArrayDetail = this.formBuilder.group({
-      childrenArray: this.formBuilder.array([]),
-    });
-
     this.hobbiesDetail = this.formBuilder.group({
       hobbies: ["", Validators.required],
     });
+
+    if (this.familyData.fatherDetail?.motherDetail.childrenDetail) {
+      this.childrenArrayDetail = this.familyData.fatherDetail.motherDetail.childrenDetail;
+    }
   }
 
   createHobbieItem(): FormGroup {
@@ -128,11 +213,70 @@ export class AddNewFamilyComponent implements OnInit {
     });
   }
 
-  addChildren() {
-    this.childrenArray = this.childrenArrayDetail.get(
-      "childrenArray"
-    ) as FormArray;
-    this.childrenArray.push(this.createChildren());
+  addEditChildren() {
+    if (this.editMode) {
+      this.childrenArrayDetail[
+        this.childrenIndex
+      ] = this.createChildren().value;
+      this.editMode = false;
+    } else {
+      this.childrenArrayDetail.push(this.createChildren().value);
+    }
+    this.resetChildren();
+  }
+
+  editChildren(index: string, item: any) {
+    this.childrenIndex = index;
+    this.childrenDetail.patchValue({
+      childrenName: item.childrenName,
+      childrenMobileNo: item.childrenMobileNo,
+      childrenGender: item.childrenGender,
+      childrenDateOfBirth: item.childrenDateOfBirth,
+      childrenOccupation: item.childrenOccupation,
+      childrenLogo: item.childrenLogo,
+    });
+    this.childrenDetail.setControl(
+      "childrenHobbiesArray",
+      this.setExistingHobbies(item.childrenHobbiesArray)
+    );
+    this.editMode = true;
+  }
+
+  setExistingChildrens(childrens: any) {
+    const formArray = new FormArray([]);
+    childrens.forEach((children: any) => {
+      formArray.push(
+        this.formBuilder.group({
+          childrenName: children.childrenName,
+          childrenMobileNo: children.childrenMobileNo,
+          childrenGender: children.childrenGender,
+          childrenDateOfBirth: children.childrenDateOfBirth,
+          childrenHobbiesArray: this.setExistingHobbies(
+            children.childrenHobbiesArray
+          ),
+          childrenOccupation: children.childrenOccupation,
+          childrenLogo: children.childrenLogo,
+        })
+      );
+    });
+    return formArray;
+  }
+
+  setExistingHobbies(hobbies: any) {
+    const formArray = new FormArray([]);
+    if (hobbies) {
+      hobbies.forEach((element: any) => {
+        formArray.push(
+          this.formBuilder.group({
+            hobbie: element.hobbie,
+          })
+        );
+      });
+    }
+    return formArray;
+  }
+
+  resetChildren() {
     this.childrenDetail = this.formBuilder.group({
       childrenName: ["", Validators.required],
       childrenMobileNo: ["", Validators.required],
@@ -155,31 +299,16 @@ export class AddNewFamilyComponent implements OnInit {
       .pipe(takeUntil(this.onDestroySubscription))
       .subscribe((item) => {
         if (item.flag) {
-          var hobbiesArray = this.childrenArrayDetail.get(
-            "childrenArray"
-          ) as FormArray;
-          hobbiesArray.removeAt(item.recordId);
+          if (this.childrenArrayDetail) {
+            this.childrenArrayDetail.splice(item.recordId);
+          }
         }
       });
   }
 
-  editChildren(index: string, item: any) {
-    console.log(item);
-    this.childrenArray = this.childrenArrayDetail.get(
-      "childrenArray"
-    ) as FormArray;
-    this.childrenDetail.setValue({
-      childrenName: item.childrenName,
-      childrenMobileNo: item.childrenMobileNo,
-      childrenGender: item.childrenGender,
-      childrenDateOfBirth: item.childrenDateOfBirth,
-      childrenHobbiesArray: item.childrenHobbiesArray as FormArray,
-      childrenOccupation: item.childrenOccupation,
-      childrenLogo: item.childrenLogo,
-    });
-    this.childrenDetail.setControl('childrenHobbiesArray', this.childrenArray.(item.childrenHobbiesArray || []));
-
-    console.log(this.childrenDetail, "this.childrenDetail");
+  viewChildren(item: any) {
+    this.childrenData = item;
+    console.log(item,'item')
   }
 
   onFileChange(event: any, scope: any, formName: string, logoName: string) {
@@ -198,15 +327,6 @@ export class AddNewFamilyComponent implements OnInit {
     scope[formName].get(logoName).setValue("");
   }
 
-  resetChildren() {
-    this.childrenDetail.reset();
-    this.childrenDetail.patchValue({
-      childrenGender: "Male",
-      childrenHobbiesArray: [],
-    });
-    this.hobbiesDetail.reset();
-  }
-
   getFamilyDetails() {
     var allFamilyDetail = {};
     allFamilyDetail["familyDetail"] = this.familyDetail.value;
@@ -216,12 +336,31 @@ export class AddNewFamilyComponent implements OnInit {
     ].fatherDetail.motherDetail = this.motherDetail.value;
     allFamilyDetail[
       "familyDetail"
-    ].fatherDetail.motherDetail.childrenDetail = this.childrenArrayDetail.value;
-    this.commonservice.addFamilyMemberService(
-      allFamilyDetail,
-      this.userDetails.uid
-    );
-    this.http.navigate(["../uiview/viewAllFamily"]);
+    ].fatherDetail.motherDetail.childrenDetail = this.childrenArrayDetail;
+    let successMsg: string;
+    if (this.familyData) {
+      this.commonservice.updateFamilyMemberService(
+        allFamilyDetail,
+        this.userDetails.uid,
+        this.familyId
+      );
+      successMsg = `${this.familyDetail.value.familyName} Family is Successfully Updated`;
+    } else {
+      this.commonservice.addFamilyMemberService(
+        allFamilyDetail,
+        this.userDetails.uid
+      );
+      successMsg = `${this.familyDetail.value.familyName} Family is Successfully Created`;
+    }
+
+    this.snackBarRef = this._snackBar.open(successMsg, "", {
+      duration: 2000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+    this.snackBarRef.afterDismissed().subscribe(() => {
+      this.http.navigate(["../uiview/viewAllFamily"]);
+    });
   }
 
   ngOnDestroy() {

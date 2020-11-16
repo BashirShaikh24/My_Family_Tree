@@ -1,13 +1,15 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from "@angular/core";
 import { Subject, Subscription } from "rxjs";
 import { map, takeUntil } from "rxjs/operators";
 import { CommonService } from "src/app/services/common.service";
 import { AuhtService } from "src/app/services/auth-service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-view-all-family",
   templateUrl: "./view-all-family.component.html",
   styleUrls: ["./view-all-family.component.css"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ViewAllFamilyComponent implements OnInit, OnDestroy {
   familyMemberList = [];
@@ -15,12 +17,15 @@ export class ViewAllFamilyComponent implements OnInit, OnDestroy {
   familyName: string;
   subscription: Subscription;
   userDetails: any;
+  loader: boolean = true;
   private onDestroySubscription: Subject<void> = new Subject<void>();
 
   constructor(
     private commonservice: CommonService,
-    private authService: AuhtService
+    private authService: AuhtService,
+    private router: Router
   ) {
+    this.commonservice.selectedUserDetails = "";
     this.deleteFamily();
   }
 
@@ -30,7 +35,7 @@ export class ViewAllFamilyComponent implements OnInit, OnDestroy {
   }
 
   setDeleteFamilyId(recordDetails: any) {
-    this.familyId = recordDetails.id;
+    this.familyId = recordDetails.key;
     this.familyName = recordDetails.familyDetail.familyName;
   }
 
@@ -47,8 +52,11 @@ export class ViewAllFamilyComponent implements OnInit, OnDestroy {
       });
   }
 
-  viewfamily(item: any) {
-    this.commonservice.selectedUserDetails = item.familyDetail;
+  viewEditFamily(item: any, path: string) {
+    this.commonservice.selectedUserDetails = item;
+    this.router.navigateByUrl(this.router.url + "/" + path, {
+      replaceUrl: true,
+    });
   }
 
   getAllFamilyList(userId: string) {
@@ -63,6 +71,7 @@ export class ViewAllFamilyComponent implements OnInit, OnDestroy {
       )
       .subscribe((customers) => {
         this.familyMemberList = customers;
+        this.loader = false;
       });
   }
 

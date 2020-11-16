@@ -6204,7 +6204,7 @@ readers do not read off random characters that represent icons */
 .fa-transgender:before {
   content: "\f224"; }
 
-.fa-transgender-alt:before {
+.fas fa-restroom:before {
   content: "\f225"; }
 
 .fa-transporter:before {

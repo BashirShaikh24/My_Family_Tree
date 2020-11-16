@@ -1,0 +1,178 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header primary-bg-color">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title" id="myModalLabel">Children Details</h4>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-8 col-sm-8">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-baby"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Children Name</div>
+                  <div class="data-section">
+                    {{
+                      childrenData?.childrenName
+                        ? childrenData?.childrenName
+                        : "-"
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Mobile No.</div>
+                  <div class="data-section">
+                    {{
+                      childrenData?.childrenMobileNo
+                        ? childrenData?.childrenMobileNo
+                        : "-"
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fas fa-restroom"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Gender</div>
+                  <div class="data-section">
+                    {{
+                      childrenData?.childrenGender
+                        ? childrenData?.childrenGender
+                        : "-"
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-birthday-cake"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Date of Birth</div>
+                  <div class="data-section">
+                    {{
+                      childrenData?.childrenDateOfBirth | date: "dd-MMM-yyyy"
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="fas fa-gamepad-alt"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Hobbies</div>
+                  <div class="data-section">
+                    <p *ngIf="!childrenData?.childrenHobbiesArray">-</p>
+                    <p *ngIf="childrenData?.childrenHobbiesArray">
+                      <span
+                        *ngIf="childrenData?.childrenHobbiesArray.length == 0"
+                        >-</span
+                      >
+                    </p>
+                    <ul
+                      class="family-member-hobbies"
+                      *ngIf="
+                        childrenData?.childrenHobbiesArray &&
+                        childrenData.childrenHobbiesArray.length > 0
+                      "
+                    >
+                      <li
+                        *ngFor="
+                          let item of childrenData?.childrenHobbiesArray;
+                          let i = index
+                        "
+                        class="hobbies-color family-view-hobbie"
+                      >
+                        {{ item.hobbie }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="subDetailContainer">
+                <div class="icon-section">
+                  <i class="far fa-clipboard-user"></i>
+                </div>
+                <div class="detail-section">
+                  <div class="label-section">Occupation</div>
+                  <div class="data-section">
+                    {{
+                      childrenData?.childrenOccupation
+                        ? childrenData?.childrenOccupation
+                        : "-"
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="uploaed-img-section">
+            <img class="profile-frame" src="../../../../assets/img/frame.png" />
+            <img
+              *ngIf="
+                !childrenData?.childrenLogo &&
+                childrenData?.childrenGender == 'Female'
+              "
+              src="../../../../assets/img/girl-default.png"
+            />
+            <img
+              *ngIf="
+                !childrenData?.childrenLogo &&
+                childrenData?.childrenGender == 'Male'
+              "
+              src="../../../../assets/img/boy-default.png"
+            />
+            <img
+              *ngIf="childrenData?.childrenLogo"
+              [src]="childrenData?.childrenLogo"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-default secondary-btn-color"
+        data-dismiss="modal"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>

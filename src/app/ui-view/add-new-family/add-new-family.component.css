@@ -1,7 +1,7 @@
 .family-upload-img-continer {
-  height: 220px;
-  width: 220px;
-  margin: 0 auto;
+  height: 260px;
+  width: 260px;
+  margin: 40px auto;
   position: relative;
   border-width: 4px;
   border-style: dashed;
@@ -109,6 +109,14 @@
   border: 4px solid #d8d8d8;
 }
 
+.child-name-section.Male img {
+  border: 4px solid rgb(136 225 255 / 0.3);
+}
+
+.child-name-section.Female img {
+  border: 4px solid rgb(255 194 194 / 0.3);
+}
+
 .child-name-inner-section {
   display: inline-block;
   vertical-align: middle;
@@ -148,8 +156,8 @@
 }
 
 .gender-color-section {
-  height: 120px;
-  width: 140px;
+  height: 100px;
+  width: 120px;
 }
 
 .gender-color-section input {
@@ -172,7 +180,7 @@
 }
 
 .gender-icon {
-  line-height: 120px;
+  line-height: 100px;
   color: #4d4d4d;
   font-size: 60px;
 }
@@ -207,6 +215,7 @@
 
 .hobbies-section-pad .family-member-hobbies li {
   margin: 0;
+  margin-right: 5px;
   padding-left: 12px;
   padding-right: 12px;
 }

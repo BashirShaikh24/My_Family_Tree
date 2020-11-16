@@ -3,9 +3,9 @@
     <ng-template matStepLabel>New Family</ng-template>
     <div class="common-inner-container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 col-sm-8">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-users"></i>
@@ -13,12 +13,16 @@
                 <div class="detail-section">
                   <div class="label-section">Family Name</div>
                   <div class="data-section">
-                    {{ familyData.familyNickName }}
+                    {{
+                      familyData.familyNickName
+                        ? familyData.familyNickName
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fad fa-users-crown"></i>
@@ -26,14 +30,18 @@
                 <div class="detail-section">
                   <div class="label-section">Family Nick Name</div>
                   <div class="data-section">
-                    {{ familyData.familyNickName }}
+                    {{
+                      familyData.familyNickName
+                        ? familyData.familyNickName
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-user-tie"></i>
@@ -41,12 +49,16 @@
                 <div class="detail-section">
                   <div class="label-section">Family Owner Name</div>
                   <div class="data-section">
-                    {{ familyData.familyOwnerName }}
+                    {{
+                      familyData.familyOwnerName
+                        ? familyData.familyOwnerName
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-mobile-alt"></i>
@@ -54,27 +66,35 @@
                 <div class="detail-section">
                   <div class="label-section">Family Owner Mobile No.</div>
                   <div class="data-section">
-                    {{ familyData.familyOwnerMobileNo }}
+                    {{
+                      familyData.familyOwnerMobileNo
+                        ? familyData.familyOwnerMobileNo
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
-                  <i class="fas fa-transgender-alt"></i>
+                  <i class="fas fas fa-restroom"></i>
                 </div>
                 <div class="detail-section">
                   <div class="label-section">Family Owner Gender</div>
                   <div class="data-section">
-                    {{ familyData.familyOwnerGender }}
+                    {{
+                      familyData.familyOwnerGender
+                        ? familyData.familyOwnerGender
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-birthday-cake"></i>
@@ -91,7 +111,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12 col-sm-12">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-house-day"></i>
@@ -99,23 +119,43 @@
                 <div class="detail-section">
                   <div class="label-section">Family Desciption</div>
                   <div class="data-section">
-                    {{ familyData.familyDescription }}
+                    {{
+                      familyData.familyDescription
+                        ? familyData.familyDescription
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="uploaed-img-section"></div>
+        <div class="col-md-4 col-sm-4">
+          <div class="uploaed-img-section">
+            <img class="profile-frame" src="../../../../assets/img/frame.png" />
+            <img
+              *ngIf="!familyData?.familyLogo"
+              src="../../../../assets/img/family-default.png"
+            />
+            <img
+              *ngIf="familyData?.familyLogo"
+              [src]="familyData?.familyLogo"
+            />
+          </div>
         </div>
       </div>
       <div class="add-family-actiontbtn text-right">
         <button
-          mat-button
+          type="button"
+          routerLink="../../viewAllFamily"
+          class="btn btn-default secondary-btn-color"
+        >
+          Back
+        </button>
+        <button
           type="submit"
           matStepperNext
-          class="btn btn-primary primary-btn-color"
+          class="btn btn-primary primary-btn-color margin-left-10"
         >
           Next
         </button>
@@ -126,9 +166,9 @@
     <ng-template matStepLabel>Father Detail</ng-template>
     <div class="common-inner-container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 col-sm-8">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-user-tie"></i>
@@ -136,12 +176,16 @@
                 <div class="detail-section">
                   <div class="label-section">Father Name</div>
                   <div class="data-section">
-                    {{ familyData.fatherDetail.fatherName }}
+                    {{
+                      familyData.fatherDetail.fatherName
+                        ? familyData.fatherDetail.fatherName
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-mobile-alt"></i>
@@ -149,27 +193,35 @@
                 <div class="detail-section">
                   <div class="label-section">Mobile No.</div>
                   <div class="data-section">
-                    {{ familyData.fatherDetail.fatherMobileNo }}
+                    {{
+                      familyData.fatherDetail.fatherMobileNo
+                        ? familyData.fatherDetail.fatherMobileNo
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
-                  <i class="fas fa-transgender-alt"></i>
+                  <i class="fas fas fa-restroom"></i>
                 </div>
                 <div class="detail-section">
                   <div class="label-section">Gender</div>
                   <div class="data-section">
-                    {{ familyData.fatherDetail.fatherGender }}
+                    {{
+                      familyData.fatherDetail.fatherGender
+                        ? familyData.fatherDetail.fatherGender
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-birthday-cake"></i>
@@ -187,7 +239,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-gamepad-alt"></i>
@@ -195,7 +247,11 @@
                 <div class="detail-section">
                   <div class="label-section">Hobbies</div>
                   <div class="data-section">
-                    <ul class="family-member-hobbies">
+                    <p *ngIf="!familyData.fatherDetail.fatherHobbiesArray">-</p>
+                    <ul
+                      class="family-member-hobbies"
+                      *ngIf="familyData.fatherDetail.fatherHobbiesArray"
+                    >
                       <li
                         *ngFor="
                           let item of familyData.fatherDetail
@@ -211,7 +267,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="far fa-clipboard-user"></i>
@@ -219,19 +275,34 @@
                 <div class="detail-section">
                   <div class="label-section">Occupation</div>
                   <div class="data-section">
-                    {{ familyData.fatherDetail.fatherOccupation }}
+                    {{
+                      familyData.fatherDetail.fatherOccupation
+                        ? familyData.fatherDetail.fatherOccupation
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">Uploaded Images</div>
+        <div class="col-md-4 col-sm-4">
+          <div class="uploaed-img-section">
+            <img class="profile-frame" src="../../../../assets/img/frame.png" />
+            <img
+              *ngIf="!familyData?.fatherDetail.fatherLogo"
+              src="../../../../assets/img/father-default.png"
+            />
+            <img
+              *ngIf="familyData?.fatherDetail.fatherLogo"
+              [src]="familyData?.fatherDetail.fatherLogo"
+            />
+          </div>
+        </div>
       </div>
       <div class="add-family-actiontbtn text-right">
         <button
           type="button"
-          mat-button
           matStepperPrevious
           class="btn btn-default secondary-btn-color"
         >
@@ -239,7 +310,6 @@
         </button>
         <button
           type="button"
-          mat-button
           matStepperNext
           class="btn btn-primary primary-btn-color margin-left-10"
         >
@@ -252,9 +322,9 @@
     <ng-template matStepLabel>Mother Detail</ng-template>
     <div class="common-inner-container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 col-sm-8">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-user-crown"></i>
@@ -262,12 +332,16 @@
                 <div class="detail-section">
                   <div class="label-section">Mother Name</div>
                   <div class="data-section">
-                    {{ familyData.fatherDetail.motherDetail.motherName }}
+                    {{
+                      familyData.fatherDetail.motherDetail.motherName
+                        ? familyData.fatherDetail.motherDetail.motherName
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-mobile-alt"></i>
@@ -275,27 +349,35 @@
                 <div class="detail-section">
                   <div class="label-section">Mobile No.</div>
                   <div class="data-section">
-                    {{ familyData.fatherDetail.motherDetail.motherMobileNo }}
+                    {{
+                      familyData.fatherDetail.motherDetail.motherMobileNo
+                        ? familyData.fatherDetail.motherDetail.motherMobileNo
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
-                  <i class="fas fa-transgender-alt"></i>
+                  <i class="fas fas fa-restroom"></i>
                 </div>
                 <div class="detail-section">
                   <div class="label-section">Gender</div>
                   <div class="data-section">
-                    {{ familyData.fatherDetail.motherDetail.motherGender }}
+                    {{
+                      familyData.fatherDetail.motherDetail.motherGender
+                        ? familyData.fatherDetail.motherDetail.motherGender
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-birthday-cake"></i>
@@ -313,7 +395,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="fas fa-gamepad-alt"></i>
@@ -321,7 +403,19 @@
                 <div class="detail-section">
                   <div class="label-section">Hobbies</div>
                   <div class="data-section">
-                    <ul class="family-member-hobbies">
+                    <p
+                      *ngIf="
+                        !familyData.fatherDetail.motherDetail.motherHobbiesArray
+                      "
+                    >
+                      -
+                    </p>
+                    <ul
+                      class="family-member-hobbies"
+                      *ngIf="
+                        familyData.fatherDetail.motherDetail.motherHobbiesArray
+                      "
+                    >
                       <li
                         *ngFor="
                           let item of familyData.fatherDetail.motherDetail
@@ -337,7 +431,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">
               <div class="subDetailContainer">
                 <div class="icon-section">
                   <i class="far fa-clipboard-user"></i>
@@ -345,19 +439,34 @@
                 <div class="detail-section">
                   <div class="label-section">Occupation</div>
                   <div class="data-section">
-                    {{ familyData.fatherDetail.motherDetail.motherOccupation }}
+                    {{
+                      familyData.fatherDetail.motherDetail.motherOccupation
+                        ? familyData.fatherDetail.motherDetail.motherOccupation
+                        : "-"
+                    }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">Uploaded Images</div>
+        <div class="col-md-4 col-sm-4">
+          <div class="uploaed-img-section">
+            <img class="profile-frame" src="../../../../assets/img/frame.png" />
+            <img
+              *ngIf="!familyData?.fatherDetail.motherDetail.motherLogo"
+              src="../../../../assets/img/women-default.png"
+            />
+            <img
+              *ngIf="familyData?.fatherDetail.motherDetail.motherLogo"
+              [src]="familyData?.fatherDetail.motherDetail.motherLogo"
+            />
+          </div>
+        </div>
       </div>
       <div class="add-family-actiontbtn text-right">
         <button
           type="button"
-          mat-button
           matStepperPrevious
           class="btn btn-default secondary-btn-color"
         >
@@ -365,7 +474,6 @@
         </button>
         <button
           type="button"
-          mat-button
           matStepperNext
           class="btn btn-primary primary-btn-color margin-left-10"
         >
@@ -377,87 +485,81 @@
   <mat-step [optional]="isOptional">
     <ng-template matStepLabel>Children Detail</ng-template>
     <div class="common-inner-container">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="subDetailContainer">
-                <div class="icon-section">
-                  <i class="fas fa-user-tie"></i>
-                </div>
-                <div class="detail-section">
-                  <div class="label-section">Father Name</div>
-                  <div class="data-section">dadasd</div>
+      <div *ngIf="!familyData.fatherDetail.motherDetail.childrenDetail">
+        <div class="no-child-found">
+          <i class="fas fa-baby"></i>
+          <p>No Children Found</p>
+        </div>
+      </div>
+      <div
+        class="card-wrapping-container"
+        *ngIf="familyData.fatherDetail.motherDetail.childrenDetail"
+      >
+        <div
+          class="family-member-card"
+          *ngFor="
+            let item of familyData?.fatherDetail.motherDetail.childrenDetail
+          "
+        >
+          <div
+            data-toggle="modal"
+            data-target="#viewChildren"
+            (click)="viewChildren(item)"
+          >
+            <div class="family-member-img-section">
+              <img [src]="item.childrenLogo" *ngIf="item.childrenLogo" alt="" />
+              <img
+                *ngIf="!item.childrenLogo && item?.childrenGender == 'Female'"
+                src="../../../../assets/img/girl-default.png"
+              />
+              <img
+                *ngIf="!item.childrenLogo && item?.childrenGender == 'Male'"
+                src="../../../../assets/img/boy-default.png"
+              />
+              <img *ngIf="item.childrenLogo" [src]="item.childrenLogo" />
+            </div>
+            <div class="family-member-detail-section">
+              <div class="family-member-inner-section">
+                <div class="header">Name</div>
+                <div class="detail">
+                  {{ item.childrenName ? item.childrenName : "-" }}
                 </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="subDetailContainer">
-                <div class="icon-section">
-                  <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="detail-section">
-                  <div class="label-section">Mobile No.</div>
-                  <div class="data-section">dasd</div>
+              <div class="family-member-inner-section">
+                <div class="header">Occupation</div>
+                <div class="detail">
+                  {{ item.childrenOccupation ? item.childrenOccupation : "-" }}
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="subDetailContainer">
-                <div class="icon-section">
-                  <i class="fas fa-transgender-alt"></i>
-                </div>
-                <div class="detail-section">
-                  <div class="label-section">Gender</div>
-                  <div class="data-section">dadasd</div>
+              <div class="family-member-inner-section">
+                <div class="header">Date of Birth</div>
+                <div class="detail">
+                  {{
+                    item.childrenDateOfBirth
+                      ? (item.childrenDateOfBirth | date: "dd-MMM-yyyy")
+                      : "-"
+                  }}
                 </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="subDetailContainer">
-                <div class="icon-section">
-                  <i class="fas fa-birthday-cake"></i>
-                </div>
-                <div class="detail-section">
-                  <div class="label-section">Date of Birth</div>
-                  <div class="data-section">dasd</div>
+              <div class="family-member-inner-section">
+                <div class="header">Gender</div>
+                <div class="detail">
+                  {{ item.childrenGender ? item.childrenGender : "-" }}
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="subDetailContainer">
-                <div class="icon-section">
-                  <i class="fas fa-gamepad-alt"></i>
-                </div>
-                <div class="detail-section">
-                  <div class="label-section">Hobbies</div>
-                  <div class="data-section">dadasd</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="subDetailContainer">
-                <div class="icon-section">
-                  <i class="far fa-clipboard-user"></i>
-                </div>
-                <div class="detail-section">
-                  <div class="label-section">Occupation</div>
-                  <div class="data-section">dasd</div>
+              <div class="family-member-inner-section">
+                <div class="header">Mobile No.</div>
+                <div class="detail">
+                  {{ item.childrenMobileNo ? item.childrenMobileNo : "-" }}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">Uploaded Images</div>
       </div>
       <div class="add-family-actiontbtn text-right">
         <button
           type="button"
-          mat-button
           matStepperPrevious
           class="btn btn-default secondary-btn-color"
         >
@@ -465,7 +567,6 @@
         </button>
         <button
           type="button"
-          mat-button
           matStepperNext
           class="btn btn-primary primary-btn-color margin-left-10"
         >
@@ -475,3 +576,14 @@
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+
+<!-- View Children -->
+<div
+  class="modal fade"
+  id="viewChildren"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+>
+  <app-view-children [childrenData]="childrenData"></app-view-children>
+</div>

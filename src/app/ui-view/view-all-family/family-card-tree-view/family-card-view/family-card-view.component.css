@@ -46,17 +46,52 @@
 }
 
 .uploaed-img-section {
-  height: 250px;
-  width: 250px;
-  background-color: white;
-  border: 10px solid #ededed;
-  box-shadow: 0px 0px 3px 3px #fdfdfd;
-  margin: 15px auto;
+  height: 300px;
+  width: 300px;
   position: relative;
+  margin: 30px auto;
+  padding: 42px;
+}
+
+.profile-frame {
+  position: absolute;
+  left: 3px;
+  top: -3px;
+}
+
+.uploaed-img-section img {
+  width: 100%;
+  height: 100%;
 }
 
 .family-view-hobbie {
   font-size: 14px;
   font-weight: 400;
   margin-top: 4px;
+}
+
+.stepper-family-detail-view .family-member-card {
+  min-height: auto;
+}
+
+.no-child-found {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.no-child-found i {
+  font-size: 120px;
+  color: #ebebeb;
+  height: 150px;
+  width: 150px;
+  border: 7px solid #ebebeb;
+  text-align: center;
+  border-radius: 100%;
+  line-height: 150px;
+  box-sizing: content-box;
+}
+
+.no-child-found p {
+  font-size: 18px;
+  margin: 10px 0;
 }

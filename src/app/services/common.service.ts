@@ -35,6 +35,10 @@ export class CommonService {
     this.db.list(this.dbPath + userId).push(key);
   }
 
+  updateFamilyMemberService(key: any, userId: any, familyId: any) {
+    return this.db.list(this.dbPath + userId).update(familyId, key);
+  }
+
   deleteFamilyMemberService(key: any, userId: string) {
     return this.db.list(this.dbPath + userId).remove(key);
   }

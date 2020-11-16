@@ -1,4 +1,5 @@
 <div class="common-parent-container">
+  <app-loader *ngIf="loader"></app-loader>
   <div class="common-wrapper-container">
     <div class="common-page-tittle primary-bg-color">All Family</div>
     <div class="common-inner-container">
@@ -8,15 +9,14 @@
             <button
               type="button"
               class="edit"
-              routerLink="../viewAllFamily/editFamily"
+              (click)="viewEditFamily(item, 'editFamily')"
             >
               <i class="fas fa-pencil-alt"></i>
             </button>
             <button
               type="button"
               class="view"
-              (click)="viewfamily(item)"
-              routerLink="../viewAllFamily/familyCardTreeView"
+              (click)="viewEditFamily(item, 'familyCardTreeView')"
             >
               <i class="far fa-eye"></i>
             </button>
@@ -30,15 +30,11 @@
               <i class="far fa-trash-alt"></i>
             </button>
           </div>
-          <div
-            (click)="viewfamily(item)"
-            routerLink="../viewAllFamily/familyCardTreeView"
-          >
+          <div (click)="viewEditFamily(item, 'familyCardTreeView')">
             <div class="family-member-img-section">
               <img
-                src="../../assets/img/default_family_icon.png"
+                src="../../assets/img/family-default.png"
                 *ngIf="!item.familyDetail.familyLogo"
-                style="opacity: 0.5"
                 alt=""
               />
               <img
@@ -112,8 +108,16 @@
         role="dialog"
         aria-labelledby="myModalLabel"
       >
-        <app-delete [getRecordId]="familyId" [modelHeader]="'Family'" [recordName]="familyName"></app-delete>
+        <app-delete
+          [getRecordId]="familyId"
+          [modelHeader]="'Family'"
+          [recordName]="familyName"
+        ></app-delete>
       </div>
     </div>
+  </div>
+  <div *ngIf="familyMemberList.length == 0" class="no-family-found">
+    <img src="../../../assets/img/Blended-Family-removebg-preview.png" />
+    <p>No Family Found</p>
   </div>
 </div>

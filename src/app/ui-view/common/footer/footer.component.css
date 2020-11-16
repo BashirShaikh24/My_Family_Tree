@@ -1,8 +1,74 @@
 .common-footer {
+  color: #676767;
   position: absolute;
   left: 0;
   bottom: 0;
   background-color: #fff;
   right: 0;
   z-index: 1;
+  padding: 8px 80px;
+  font-weight: 100;
+  text-align: right;
+}
+
+.common-footer .row {
+  margin: 0;
+}
+
+.contact-section a {
+  color: #676767;
+}
+
+.contact-section {
+  margin: 0px 10px;
+}
+
+.social-media-icon {
+  vertical-align: text-top;
+}
+
+.social-media-icon i {
+  font-size: 18px;
+  margin: 0 5px;
+}
+
+.social-media-icon i.fa-facebook-square {
+  color: #3b5998;
+}
+.social-media-icon i.fa-linkedin {
+  color: #4875b4;
+}
+.social-media-icon i.fa-twitter-square {
+  color: #1da1f2;
+}
+
+.divider {
+  font-weight: 100;
+}
+
+@media only screen and (max-width: 767px) {
+  .common-footer {
+    padding: 8px 0;
+  }
+
+  .common-footer .col-md-8 {
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+
+  .contact-section {
+    display: block;
+  }
+
+  .contact-section {
+    margin: 0 5px;
+  }
+
+  .social-media-icon {
+    margin: 0px 5px;
+  }
+
+  .divider {
+    display: none;
+  }
 }

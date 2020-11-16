@@ -1,11 +1,28 @@
 <div class="common-parent-container">
   <ol class="breadcrumb">
-    <li><a routerLink="../../viewAllFamily">All Family</a></li>
+    <li>
+      <a (click)="onbackToAllFamily()">All Family</a>
+      <i class="fas fa-chevron-right breadCrumb-arrow"></i>
+    </li>
     <li class="active">View Family</li>
+    <li class="card-tree-toggle-btn">
+      <button [ngClass]="{ active: listView }" (click)="listView = true">
+        <i class="fas fa-list"></i>
+      </button>
+      <button [ngClass]="{ active: !listView }" (click)="listView = false">
+        <i class="fas fa-folder-tree"></i>
+      </button>
+    </li>
   </ol>
   <div class="common-wrapper-container">
     <div class="common-page-tittle primary-bg-color">View Family</div>
-    <app-family-card-view [familyData]="setFamilyData"></app-family-card-view>
-    <!-- <app-family-tree-view></app-family-tree-view> -->
+    <app-family-card-view
+      [familyData]="setFamilyData"
+      *ngIf="listView"
+    ></app-family-card-view>
+    <app-family-tree-view
+      [familyData]="setFamilyData"
+      *ngIf="!listView"
+    ></app-family-tree-view>
   </div>
 </div>

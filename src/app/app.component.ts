@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { ThemeService } from "./services/theme.service";
 import { DOCUMENT } from "@angular/common";
 import { AuhtService } from "./services/auth-service";
+import { environment } from "../environments/environment";
 
 @Component({
   selector: "app-root",
@@ -9,7 +10,7 @@ import { AuhtService } from "./services/auth-service";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-  title = "my-dream-app";
+  title = "My Family Tree";
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
       const style = this.document.createElement("link");
       style.id = "client-theme";
       style.rel = "stylesheet";
-      style.href = "default.css";
+      style.href = `${environment.defaultTheme}.css`;
       head.appendChild(style);
       this.authService.LogOut();
     }

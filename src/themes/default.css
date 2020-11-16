@@ -1,33 +1,33 @@
 .primary-border-color {
-  border-color: #6f7aff;
+  border-color: #25292e;
 }
 
 .secondary-border-color {
-  border-color: #aeb4ff;
+  border-color: #ff810033;
 }
 
 .sideNav-icon-color {
-  color: #606cff;
+  color: #ff8100;
 }
 
 .common-sidenav-icon-color:hover,
 .common-sidenav-icon-color.active,
 .the-family-logo {
-  background-color: #606cff;
-  box-shadow: inset 0px 0px 4px 3px #5160ff;
+  background-color: #282e32;
+  box-shadow: inset 0px 0px 4px 3px #1f1f1f;
 }
 
 .common-sidenav-icon-color:hover .sideNav-icon-color,
 .common-sidenav-icon-color.active .sideNav-icon-color {
-  color: #7f89ff;
+  color: #000;
 }
 
 .icon-section i {
-  color: #7f89ff4f;
+  color: #ff810059;
 }
 
 .primary-bg-color {
-  background-color: #7f89ff;
+  background-color: #343a40;
   color: #fff;
 }
 
@@ -40,17 +40,17 @@
 }
 
 .primary-font-color {
-  color: #7f89ff;
+  color: #343a40;
 }
 
 .secondary-font-color {
 }
 
 .primary-btn-color {
-  background-color: #7f89ff;
-  border-color: #7c86ff;
+  background-color: #343a40;
+  border-color: #343a40;
   color: #fff;
-  box-shadow: 0 3px 0 0 #5361ff !important;
+  box-shadow: 0 3px 0 0 #000000 !important;
   transition: 0.1s all linear;
 }
 
@@ -58,9 +58,9 @@
 .primary-btn-color:active,
 .primary-btn-color:focus,
 .primary-btn-color:active:focus {
-  background-color: #6672ff !important;
-  border-color: #5664ff !important;
-  box-shadow: 0 1px 0 0 #5361ff !important;
+  background-color: #262b30 !important;
+  border-color: #1b1b1b !important ;
+  box-shadow: 0 1px 0 0 #000000 !important;
   transform: translateY(2px);
 }
 
@@ -83,32 +83,33 @@
 }
 
 .hobbies-color {
-  background-color: #aeb4ff;
+  background-color: #ff810082;
   color: #fff;
 }
 
 .mat-step-header .mat-step-label.mat-step-label-active,
+.common-parent-container.editMode .mat-step-label,
 .stepper-family-detail-view .mat-step-label {
-  background-color: #606cff;
+  background-color: #ff8100;
   color: #fff !important;
 }
 
 .form-control:focus {
-  border-color: #bfc4ff;
-  box-shadow: inset 0 1px 1px #e5e7ff, 0 0 8px #d0d3ff;
+  border-color: #ffe6cd;
+  box-shadow: inset 0 1px 1px #fff7ee, 0 0 8px #ffe4c8;
   background-color: #fff;
 }
 
 .mat-calendar-body-selected {
-  background-color: #7f89ff;
+  background-color: #343a40;
 }
 
 .mat-datepicker-toggle-active {
-  color: #7f89ff;
+  color: #343a40;
 }
 
 .login-reg-btn {
-  box-shadow: 0 4px 0 0 #5361ff;
+  box-shadow: 0 4px 0 0 #343a40;
 }
 
 /* Action Button Section */
@@ -118,32 +119,50 @@
 }
 
 .ms-nav .ms-menu-toggle ~ .ms-li:before {
-  border-top: 0px solid #7f89ff;
+  border-top: 0px solid #343a40;
 }
 
 .ms-nav .ms-menu-toggle:checked ~ .ms-li:before {
-  border-top: 25px solid #7f89ff;
+  border-top: 25px solid #343a40;
 }
 
 .ms-nav .ms-menu-toggle:checked ~ .ms-li:after {
-  border-bottom: 25px solid #7f89ff;
+  border-bottom: 25px solid #343a40;
 }
 
 .ms-nav .ms-menu-toggle:checked ~ .ms-main:after {
-  border-bottom: 45px solid #7f89ff;
+  border-bottom: 45px solid #343a40;
 }
 
 .ms-nav .ms-menu-toggle:checked ~ .ms-li-last:after {
-  border-bottom: 0px solid #7f89ff;
+  border-bottom: 0px solid #343a40;
 }
 
 .ms-nav > li a,
 .ms-nav > .ms-main a,
 .ms-nav > .ms-main > a > label {
   color: #ffffff;
-  background: #7f89ff;
+  background: #343a40;
 }
 
 .family-member-hobbies li i {
-  color: #7279cc;
+  color: #9d4f00;
+}
+
+.card-tree-toggle-btn button {
+  color: #7a7a7a;
+}
+
+.breadcrumb > .active {
+  color: #ff8100 !important;
+}
+
+.card-tree-toggle-btn button.active {
+  background-color: #282e32;
+  box-shadow: inset 0px 0px 4px 3px #1f1f1f;
+  color: #ff8100 !important;
+}
+
+.breadcrumb {
+  background-color: #343a40;
 }

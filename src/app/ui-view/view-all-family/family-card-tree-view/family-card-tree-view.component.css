@@ -1,0 +1,13 @@
+
+.card-tree-toggle-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.card-tree-toggle-btn button {
+  border: 0;
+  padding: 6px 15px;
+  font-size: 20px;
+  background-color: transparent;
+}

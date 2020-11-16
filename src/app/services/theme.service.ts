@@ -39,13 +39,13 @@ export class ThemeService {
     const head = this.document.getElementsByTagName("head")[0];
     const style = this.document.getElementById("client-theme");
     if (style) {
-      style.setAttribute("href", theme.toLowerCase() + ".css");
+      style.setAttribute("href", `${theme}.css`);
       head.appendChild(style);
     } else {
       const style = this.document.createElement("link");
       style.id = "client-theme";
       style.rel = "stylesheet";
-      style.href = theme.toLowerCase() + ".css";
+      style.href = `${theme}.css`;
       head.appendChild(style);
     }
   }

@@ -1,7 +1,7 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { CommonService } from "src/app/services/common.service";
-import { takeUntil } from "rxjs/operators";
-import { Subject } from "rxjs";
 
 @Component({
   selector: "app-family-card-tree-view",
@@ -10,10 +10,19 @@ import { Subject } from "rxjs";
 })
 export class FamilyCardTreeViewComponent implements OnInit {
   setFamilyData: any;
-  constructor(private commonservice: CommonService) {}
+  listView: boolean = true;
+  data: any;
+  constructor(
+    private commonservice: CommonService,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.setFamilyData = this.commonservice.selectedUserDetails;
+    this.setFamilyData = this.commonservice.selectedUserDetails.familyDetail;
   }
 
+  onbackToAllFamily() {
+    this.router.navigate(["/uiview/viewAllFamily"]);
+  }
 }

@@ -22,7 +22,7 @@ sup {
 }
 
 .btn {
-  min-width: 90px;
+  min-width: 90px !important;
 }
 
 .btn:hover,
@@ -48,6 +48,10 @@ sup {
 
 .modal-title {
   font-weight: 400;
+}
+
+.modal-dialog {
+  width: 80%;
 }
 
 .common-page-tittle {
@@ -189,6 +193,10 @@ button.mat-menu-item {
   height: 40px;
 }
 
+.breadcrumb > li + li:before {
+  display: none;
+}
+
 /* Check Box Component */
 .checkbox-parent-container {
   list-style: none;
@@ -244,7 +252,7 @@ button.mat-menu-item {
 }
 
 .margin-left-10 {
-  margin-left: 10px;
+  margin-left: 10px !important;
 }
 
 .family-member-hobbies {
@@ -271,4 +279,25 @@ button.mat-menu-item {
   margin-left: 6px;
   cursor: pointer;
   vertical-align: middle;
+}
+
+.add-family-actiontbtn {
+  margin-top: 20px;
+}
+
+/* BreadCrumb */
+.breadcrumb {
+  position: relative;
+  border-radius: 0;
+  color: #fff;
+  border-radius: 0;
+  padding: 10px 15px;
+}
+
+.breadcrumb a {
+  color: #fff;
+}
+
+.breadCrumb-arrow {
+  margin: 0 6px;
 }

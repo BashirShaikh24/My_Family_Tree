@@ -56,8 +56,8 @@ export class ThemesComponent implements OnInit, OnDestroy {
     this.selectedColor = item.color;
     item.key = this.selectedColorId;
     this.themeService.updateUserTheme(item, this.userDetails.uid);
-    this.themeService.setTheme(item.color);
-    this.userDetails.themeColor = item.color;
+    this.themeService.setTheme(this.selectedColor);
+    this.userDetails.themeColor = this.selectedColor;
   }
 
   ngOnDestroy() {

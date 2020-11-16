@@ -3,12 +3,16 @@
   box-shadow: 1px -1px 2px 2px #d6d6d6;
 }
 .common-header {
-  padding: 5px 20px;
+  padding: 0px 20px;
+}
+
+.brand-logo {
+  padding: 2px 0;
 }
 
 .logout-section {
   text-align: right;
-  padding: 6px 0;
+  padding: 12px 0;
 }
 
 .logout-section button {
